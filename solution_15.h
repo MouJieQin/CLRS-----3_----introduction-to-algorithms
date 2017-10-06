@@ -1158,14 +1158,288 @@ private:
 		}
 	}
 };
-class solution15_5 {
+class solution15_8 {
 public:
 	void operator()() {
+		cout << "a.首先选择第一行有n种可能性，T(x)表示第x行一共有多少种\n"
+			<< "可能性，有递归式T(x)>=2T(x-1)，因为选定第一行像素点\n"
+			<< "后，下一行的像素点可选点最少有两个，形成等比数列\n"
+			<< "T(m)>n*2^m \n"
+			<< endl;
+		cout << "s[i][j],表示经过原矩阵m[i][j]点的最小损坏，有递归式\n"
+			<< "s[i][j]=min{s[i-1][j],s[i-1][j-1],s[i-1][j+1]\n"
+			<< "s[m][k]为所求，其中，m为原矩阵的行数，k为使最后一行\n"
+			<< "最小的值\n"
+			<< endl;
+		const int m = 7;
+		const int n = 6;
+		srand(static_cast<unsigned int>(time(nullptr)));
+		vector<vector<int>>d(m + 1, vector<int>(n + 1, 0));
 
+		cout << "原矩阵为" << endl;
+		for (int i = 1; i <= m; ++i) {
+			for (int j = 1; j <= n; ++j) {
+				d[i][j] = rand() % 10+1;
+				cout << d[i][j] << "\t";
+			}
+			cout << endl;
+		}
+		cout << "\n" << endl;
+
+		min_disruption(d);
 	}
-private:
+	void min_disruption(vector<vector<int>>&d) {
+		vector<vector<int>>s(d.size(), vector<int>(d.front().size(), INT_MAX));
+		vector<vector<int>>r(s);
+		for (size_t i = 1; i < d.size(); ++i)//初始化
+			s[i][0] = 0;
+		for (size_t i = 1; i < d.front().size(); ++i)
+			s[0][i] = 0;
+
+		size_t m = d.size() - 1;
+		size_t n = d.front().size() - 1;
+
+		for (size_t i = 1; i < d.size(); ++i) {
+			for (size_t j = 1; j < d.front().size(); ++j) {
+
+				int dis = 0;
+				if (j == 1) {
+					dis = s[i - 1][j] < s[i - 1][j + 1] ? s[i - 1][j] : s[i - 1][j + 1];
+				}
+				else if (j == m) {
+					dis = s[i - 1][j] < s[i - 1][j - 1] ? s[i - 1][j] : s[i - 1][j - 1];
+				}
+				else {
+
+					dis = s[i - 1][j - 1] < s[i - 1][j] ? s[i - 1][j - 1] : s[i - 1][j];
+					if (s[i-1][j - 1] < dis)
+						dis = s[i-1][j - 1];
+				}
+
+				s[i][j] = dis + d[i][j];				
+			}
+		}
+		
+		cout << "递归累加后的矩阵为\n" << endl;
+		for (size_t i = 1; i < d.size(); ++i) {
+			for (size_t j = 1; j < d.front().size(); ++j) {
+				cout << s[i][j] << "\t";
+			}
+			cout << endl;
+		}
+
+		int index = n;
+		int min = s[m][n];
+		for(size_t i=1;i<n;++i)
+			if (min > s[m][i]) {
+				min = s[m][i];
+				index = i;
+			}
+
+		cout << "\n最小损坏为" << endl;
+		cout << min << endl;
+
+		print(s, d, m, index);
+	}
+	void print(vector<vector<int>>&s,vector<vector<int>>&d, int i, int j) {
+		vector<int>stack;
+		while (i >= 1) {
+			stack.push_back(j);
+			int sum = s[i][j] - d[i][j];
+			if (j == 1) {
+				if (sum == s[i - 1][j + 1])
+					j = j + 1;
+			}
+			else if (j == s.front().size() - 1) {
+				if (sum == s[i - 1][j - 1])
+					j = j - 1;
+			}
+			else {
+				if (sum == s[i - 1][j + 1])
+					j = j + 1;
+				else if (sum == s[i - 1][j - 1])
+					j = j - 1;
+			}
+			i -= 1;
+		}
+
+		cout << "\n" << endl;
+		size_t m = stack.size() - 1;
+		for (int i = m; i >=0; --i)
+			cout << "（" << m -i+1 << "," << stack[i] << ")" << endl;
+
+		cout << endl;
+	}
 };
 
+class solution15_9 {
+public:
+	void operator()() {
+		cout << "f[i][j][k][h]=min{f[i][m-1][k][L[m]]+f[m+1][j][L[m]+1][h]+h-k+1 \n"
+			<<"0<=i<=m<=j<L.length,1<=k<=L[i],L[j]<=h<=L.length \n"
+			<<"从字符串S的k到h位划分点为L[i]--L[j]之间的点，m表示从其中一个点的下标开始\n"
+
+			<<"我看到别的答案的递归式没有考虑原始字符串的长度，可能是我没看懂，所以可能有更简单的方法\n"
+			<< endl;
+
+		min_spilt(spilt, 20);
+	}
+private:
+	//vector<int>spilt{ 1,11,14,17,20,25,30 };
+	//vector<int>spilt{ 1,10,13,16,19,24,29 };
+	vector<int>spilt{ 2,8,10 };
+	void min_spilt(vector<int>&spilt, int s) {
+		const int n = spilt.size();
+		vector<vector<vector<vector<int>>>>f(
+			n, vector<vector<vector<int>>>(n, vector<vector<int>>(s + 1, vector<int>(s + 1, INT_MAX)))
+		);
+		vector<vector<vector<vector<int>>>>r(f);
+
+		for (int i = 0; i < n; ++i)
+			for (int j = 1; j <= spilt[i]; ++j)
+				for (int k = spilt[i]; k <= s; ++k) {
+					f[i][i][j][k] = k - j + 1;
+					r[i][i][j][k] = i;
+				}//O(L.length*S.length^2)
+
+		for (int len = 1; len <= n; ++len) {//O(L.length*S^3.length^2)
+			for (int i = 0; i <= n - len; ++i) {
+				int j = i + len - 1;
+				for (int k = 1; k <= spilt[i]; ++k) {
+					for (int h = spilt[j]; h <= s; ++h) {
+						for (int m = i; m <= j; ++m) {
+							int cost;
+							if (i == j)
+								cost = h - k + 1;
+							else if (m == i)
+								cost = f[i + 1][j][spilt[i]+1][h] + h - k + 1;
+							else if (m == j)
+								cost = f[i][j - 1][k][spilt[j]] + h - k + 1;
+							else
+								cost = f[i][m - 1][k][spilt[m]] + f[m + 1][j][spilt[m]+1][h] + h - k + 1;
+
+							if (cost < f[i][j][k][h]) {
+								f[i][j][k][h] = cost;
+								r[i][j][k][h] = m;
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+		cout << "最少花费为" << endl;
+		cout << f[0][n-1][1][s] << endl;
+
+		cout << "划分顺序为" << endl;
+		print(r, 0, n - 1, 1, s);
+		cout << endl;
+	}
+
+	void print(vector<vector<vector<vector<int>>>>&r, int i, int j, int k, int h) {
+		if (i <= j) {
+			int m = r[i][j][k][h];
+			cout << spilt[m] << "\t";
+			if (i != j) {
+				if (m == i) {
+					print(r, i + 1, j, spilt[i] + 1, h);
+				}
+				else if (m == j) {
+					print(r, i, j - 1, k, spilt[j]);
+				}
+				else {
+					print(r, i, m - 1, k, spilt[m]);
+					print(r, m + 1, j, spilt[m] + 1, h);
+				}
+			}
+		}
+	}
+};
+class solution15_10 {
+public:
+	void operator()() {
+		cout << "选择最大回报率的投资"
+			<< "d.可能是我对题目理解有误，因为貌似可以使用贪心算法\n"
+			<< endl;
+	}
+};
+class solution15_11 {
+public:
+	void operator()() {
+		cout << "s[i][j]代表第i个月已经一共生产了j个机器所花费的最小成本\n"
+			<< "s[i][j]=min{s[i-1][k]+max{0,j-k-m}*c+h(j-d[i])}\n"
+			<< "其中d[i]<=j<=d[n],d[i-1]<=k<=j  \n"
+			<<"运行时间为n*d[n]^2"
+			<< endl;
+		const int n = 10;
+		const int m = 30;
+		const int c = 10;
+		srand(static_cast<unsigned int>(time(nullptr)));
+		vector<int>d(n+1,0);
+
+		cout << "\n" << "每月累计所需个数" << endl;
+		for (int i = 1; i <= n; ++i) {
+			cout << i << "\t";
+			d[i] = rand() % 11 + 25 + d[i - 1];
+		}
+		cout << endl;
+		for (int i = 1; i <= n; ++i)
+			cout << d[i] << "\t";
+
+		cout << "\n" << endl;
+
+		min_cost(d, n, m, c);
+	}
+private:
+	int h(int k) {
+		return 2*k;
+	}
+	void min_cost(vector<int>&d,int n,int m,int c) {
+		vector<vector<int>>s(n + 1, vector<int>(d[n]+1, INT_MAX));
+		vector<vector<int>>r(n + 1, vector<int>(d[n] + 1, 0));
+
+		for (int i = 0; i <= d[n]; ++i)
+			s[0][i] = i - m > 0 ? c*(i - m) + h(i) : h(i);
+
+		for (int i = 1; i <= n; ++i) {
+			for (int j = d[i]; j <= d[n]; ++j) {
+				for (int k = d[i - 1]; k <= d[n]; ++k) {
+					if (j > k) {
+						int stock = j - d[i] > 0 ? h(j - d[i]) : 0;
+						int hire = j - k - m > 0 ? c*(j - k - m) : 0;
+						int cost = s[i - 1][k] + stock + hire;
+						if (cost < s[i][j]) {
+							s[i][j] = cost;
+							r[i][j] = k;
+						}
+					}
+					else {//上个月就已经将本月所需生产完毕
+						int cost = s[i - 1][k] + h(k - d[i]);
+						if (cost < s[i][j]) {
+							s[i][j] = cost;
+							r[i][j] = k;
+						}
+					}
+				}
+			}
+		}
+
+		cout << "\n最小成本花费为" << endl;
+		cout << s[n][d[n]] << endl;
+
+		cout << "注意是从0月开始的，每月生产个数为\n"
+			<< endl;
+		print(r, n, d[n]);
+		cout << endl;
+	}
+	void print(vector<vector<int>>&r, int i, int j) {
+		if (i >= 0) {
+			print(r, i - 1, r[i][j]);
+			cout << i << "/"<< j - r[i][j] << "\t";
+		}
+	}
+};
 
 class solution15_12 {
 public:

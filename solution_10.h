@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #ifndef _SOLUTION_10_H_
 #define _SOLUTION_10_H_
 #include<iostream>
@@ -7,7 +7,7 @@
 #include<memory>
 using namespace std;
 /////////////////////////////////////////////////
-class Stack {//æ ˆçš„æ•°ç»„å®ç°
+class Stack {//Õ»µÄÊı×éÊµÏÖ
 public:
 	Stack(size_t n, initializer_list<int>lst = {}) :vect{ lst }, top(-1) {
 		for (auto i = lst.size(); i != n; ++i) {
@@ -69,12 +69,12 @@ private:
 class solution10_1_2 {
 public:
 	void operator()() {
-		cout << "å°†A[1]å’ŒA[n]åˆ†åˆ«ä½œä¸ºä¸¤ä¸ªæ ˆçš„æ ˆåº•ï¼Œå·¦è¾¹çš„æ ˆpushæ—¶å³ç§»ï¼Œå³è¾¹æ ˆpushæ—¶å·¦ç§»"
+		cout << "½«A[1]ºÍA[n]·Ö±ğ×÷ÎªÁ½¸öÕ»µÄÕ»µ×£¬×ó±ßµÄÕ»pushÊ±ÓÒÒÆ£¬ÓÒ±ßÕ»pushÊ±×óÒÆ"
 			<< endl;
 	}
 };
 /////////////////////////////////////////////
-class Queue {//é˜Ÿåˆ—çš„å®ç°
+class Queue {//¶ÓÁĞµÄÊµÏÖ
 public:
 	Queue(size_t n, initializer_list<int>lst = {}) :vect{ lst }, tail(0), head(0){
 		for (size_t i = vect.size(); i != n; ++i)
@@ -143,12 +143,12 @@ private:
 class solution10_1_4 {
 public:
 	void operator()() {
-		cout << "ä»£ç å·²åœ¨ä¸Šé¢å®ç°"
+		cout << "´úÂëÒÑÔÚÉÏÃæÊµÏÖ"
 			<< endl;
 	}
 };
 ////////////////////////////////////////////////
-class Deque {//åŒå‘é˜Ÿåˆ—çš„å®ç°
+class Deque {//Ë«Ïò¶ÓÁĞµÄÊµÏÖ
 public:
 	Deque(size_t n, initializer_list<int>lst = {}) :vect{ lst }, tail(0), head(0){
 		for (size_t i = vect.size(); i != n; ++i)
@@ -218,34 +218,34 @@ class solution10_1_5 {
 public:
 	solution10_1_5():deq(9){}
 	void operator()() {
-		cout <<"\n"<< "ä¾æ¬¡ä»å°¾ç«¯æ’å…¥9,8,7,6åæœ‰" << endl;
+		cout <<"\n"<< "ÒÀ´Î´ÓÎ²¶Ë²åÈë9,8,7,6ºóÓĞ" << endl;
 		for (auto i : vect1) {
 			deq.tail_enqueue(i);
 			deq.print_deque();
 		}
-		cout << "ä¾æ¬¡ä»å‰ç«¯æ’å…¥4,3,2,1åæœ‰" << endl;
+		cout << "ÒÀ´Î´ÓÇ°¶Ë²åÈë4,3,2,1ºóÓĞ" << endl;
 		for (auto i : vect2) {
 			deq.head_enqueue(i);
 			deq.print_deque();
 		}
-		cout << "ç»§ç»­å°¾ç«¯æ’å…¥12åˆ™æœ‰æº¢å‡ºè­¦å‘Š:" << endl;
+		cout << "¼ÌĞøÎ²¶Ë²åÈë12ÔòÓĞÒç³ö¾¯¸æ:" << endl;
 		deq.head_enqueue(12);
-		cout << "ç»§ç»­å‰ç«¯æ’å…¥12åˆ™æœ‰æº¢å‡ºè­¦å‘Š:" << endl;
+		cout << "¼ÌĞøÇ°¶Ë²åÈë12ÔòÓĞÒç³ö¾¯¸æ:" << endl;
 		deq.tail_enqueue(12);
-		cout << "å¯ä»¥çœ‹åˆ°é˜Ÿåˆ—ä¸­è¿˜æœ‰ä¸€ä¸ª0ä¸ºç©ºå…ƒç´ ä¸èƒ½æ’å…¥ï¼Œè¿™æ˜¯ç”±äºhead==tailä¸ºç©ºï¼Œè€Œhead=tail+1ä¸ºæ»¡é€ æˆçš„ \n"
-			<< "è¿™é‡Œç”±äºä¹¦ä¸­å®šä¹‰tailæŒ‡å‘ä¸‹ä¸€ä¸ªæ’å…¥çš„åœ°æ–¹ï¼Œæ‰€ä»¥ç»§ç»­æ’å…¥ä¼šå¯¼è‡´æº¢å‡ºï¼Œè¦æ”¹å˜è¿™ä¸€ç‚¹å¯ä»¥å°†tailå®šä¹‰ä¸º \n"
-			<< "æŒ‡å‘æœ€åä¸€ä¸ªå…ƒç´ " << endl;
-		cout << "ä¾æ¬¡ä»é¦–ç«¯å¼¹å‡º4ä¸ªå…ƒç´ æœ‰" << endl;
+		cout << "¿ÉÒÔ¿´µ½¶ÓÁĞÖĞ»¹ÓĞÒ»¸ö0Îª¿ÕÔªËØ²»ÄÜ²åÈë£¬ÕâÊÇÓÉÓÚhead==tailÎª¿Õ£¬¶øhead=tail+1ÎªÂúÔì³ÉµÄ \n"
+			<< "ÕâÀïÓÉÓÚÊéÖĞ¶¨ÒåtailÖ¸ÏòÏÂÒ»¸ö²åÈëµÄµØ·½£¬ËùÒÔ¼ÌĞø²åÈë»áµ¼ÖÂÒç³ö£¬Òª¸Ä±äÕâÒ»µã¿ÉÒÔ½«tail¶¨ÒåÎª \n"
+			<< "Ö¸Ïò×îºóÒ»¸öÔªËØ" << endl;
+		cout << "ÒÀ´Î´ÓÊ×¶Ëµ¯³ö4¸öÔªËØÓĞ" << endl;
 		for (auto i : vect2) {
 			cout << deq.head_dequeue() << "\t" << endl;
 		}
-		cout << "ä¾æ¬¡ä»å°¾ç«¯å¼¹å‡º4ä¸ªå…ƒç´ æœ‰" << endl;
+		cout << "ÒÀ´Î´ÓÎ²¶Ëµ¯³ö4¸öÔªËØÓĞ" << endl;
 		for (auto i : vect1) {
 			cout << deq.tail_dequeue() << "\t" << endl;
 		}
-		cout << "ç»§ç»­é¦–ç«¯å¼¹å‡ºåˆ™æœ‰æº¢å‡ºè­¦å‘Š:" << endl;
+		cout << "¼ÌĞøÊ×¶Ëµ¯³öÔòÓĞÒç³ö¾¯¸æ:" << endl;
 		cout << deq.head_dequeue() << endl;
-		cout << "ç»§ç»­å°¾ç«¯å¼¹å‡ºåˆ™æœ‰æº¢å‡ºè­¦å‘Š:" << endl;
+		cout << "¼ÌĞøÎ²¶Ëµ¯³öÔòÓĞÒç³ö¾¯¸æ:" << endl;
 		cout << deq.tail_dequeue() <<"\t"<< endl;
 	}
 private:
@@ -256,13 +256,13 @@ private:
 class solution10_1_6 {
 public:
 	void operator()() {
-		cout << "1.å°†æ ˆs1ä½œä¸ºå­˜å‚¨æ ˆï¼Œå…¥é˜Ÿæ—¶pushè¿›s1,å‡ºé˜Ÿæ—¶å°†s1çš„æ‰€æœ‰å…ƒç´ popè¿›s2ï¼Œç„¶åpop s2ä½œä¸ºå‡ºé˜Ÿå…ƒç´ ,ä¹‹åé‡æ–°å°†s2çš„æ‰€æœ‰å…ƒç´ popè¿›s1,\n"
-			<<"å…¥é˜Ÿä¸ºO(1),å‡ºé˜Ÿä¸º2cn \n"
-			<<"2.å…¥é˜Ÿæ—¶ï¼Œå¦‚æœs1ä¸ä¸ºç©ºåˆ™ç›´æ¥pushè¿›s1,ä½†ä¸å°†s1çš„å…ƒç´ popè¿›s2,å¦‚æœs1ä¸ºç©ºåˆ™å…ˆå°†s2 çš„æ‰€æœ‰å…ƒç´ popè¿›s1,ç„¶åå…¥é˜Ÿï¼ŒåŒæ ·ä¸å°†s1çš„å…ƒç´ popè¿›s2 \n"
-			<<"å‡ºé˜Ÿæ—¶å¦‚æœs1ä¸ä¸ºç©ºåˆ™ç›´æ¥å°†s1 popå‡ºå»ï¼Œä¸ºç©ºåˆ™å°†s2çš„æ‰€æœ‰å…ƒç´ popè¿›s1,ç„¶åpopå‡ºå»ï¼Œä¹Ÿå°±æ˜¯è¯´åœ¨æŸä¸€æ—¶åˆ»ä¸€å®šæœ‰ä¸€ä¸ªé˜Ÿåˆ—ä¸ºç©º \n"
-			<<"å…¥é˜Ÿæ—¶s1ä¸ºç©ºä¸ºcn,å¦åˆ™O(1ï¼‰ï¼Œå‡ºé˜Ÿæ—¶s2ä¸ºç©ºä¸ºç©ºä¸ºcn,å¦åˆ™O(1ï¼‰\n"
-			<<"3.å…¥é˜Ÿæ—¶ç›´æ¥pushè¿›s1ï¼Œå‡ºé˜Ÿæ—¶å¦‚æœs2ä¸ä¸ºç©ºåˆ™ç›´æ¥å°†s2 popå‡ºå»ï¼Œä¸ºç©ºåˆ™å°†s1çš„æ‰€æœ‰å…ƒç´ popè¿›s2,ç„¶åpopå‡ºå» \n"
-			<<"å…¥é˜Ÿä¸ºO(1),å‡ºé˜Ÿä¸ºO(1)æˆ–O(n)"
+		cout << "1.½«Õ»s1×÷Îª´æ´¢Õ»£¬Èë¶ÓÊ±push½øs1,³ö¶ÓÊ±½«s1µÄËùÓĞÔªËØpop½øs2£¬È»ºópop s2×÷Îª³ö¶ÓÔªËØ,Ö®ºóÖØĞÂ½«s2µÄËùÓĞÔªËØpop½øs1,\n"
+			<<"Èë¶ÓÎªO(1),³ö¶ÓÎª2cn \n"
+			<<"2.Èë¶ÓÊ±£¬Èç¹ûs1²»Îª¿ÕÔòÖ±½Ópush½øs1,µ«²»½«s1µÄÔªËØpop½øs2,Èç¹ûs1Îª¿ÕÔòÏÈ½«s2 µÄËùÓĞÔªËØpop½øs1,È»ºóÈë¶Ó£¬Í¬Ñù²»½«s1µÄÔªËØpop½øs2 \n"
+			<<"³ö¶ÓÊ±Èç¹ûs1²»Îª¿ÕÔòÖ±½Ó½«s1 pop³öÈ¥£¬Îª¿ÕÔò½«s2µÄËùÓĞÔªËØpop½øs1,È»ºópop³öÈ¥£¬Ò²¾ÍÊÇËµÔÚÄ³Ò»Ê±¿ÌÒ»¶¨ÓĞÒ»¸ö¶ÓÁĞÎª¿Õ \n"
+			<<"Èë¶ÓÊ±s1Îª¿ÕÎªcn,·ñÔòO(1£©£¬³ö¶ÓÊ±s2Îª¿ÕÎª¿ÕÎªcn,·ñÔòO(1£©\n"
+			<<"3.Èë¶ÓÊ±Ö±½Ópush½øs1£¬³ö¶ÓÊ±Èç¹ûs2²»Îª¿ÕÔòÖ±½Ó½«s2 pop³öÈ¥£¬Îª¿ÕÔò½«s1µÄËùÓĞÔªËØpop½øs2,È»ºópop³öÈ¥ \n"
+			<<"Èë¶ÓÎªO(1),³ö¶ÓÎªO(1)»òO(n)"
 			<< endl;
 	}
 };
@@ -270,7 +270,7 @@ public:
 class solution10_1_7 {
 public:
 	void operator()() {
-		cout << "ä¸ä¸Šä¸€é¢˜ç±»ä¼¼ï¼Œä¸èµ˜è¿° è¿è¡Œæ—¶é—´ä¸ºÎ˜(n)"
+		cout << "ÓëÉÏÒ»ÌâÀàËÆ£¬²»×¸Êö ÔËĞĞÊ±¼äÎª¦¨(n)"
 			<< endl;
 	}
 };
@@ -278,8 +278,8 @@ public:
 class solution10_2_1 {
 public:
 	void operator()() {
-		cout << "insertå¯ä»¥åœ¨O(1)çš„æ—¶é—´å®Œæˆï¼Œå› ä¸ºæ’å…¥æ€»æ˜¯åœ¨è¡¨å¤´è¿›è¡Œï¼Œæ‰€ä»¥æ’å…¥ä½ç½®å‰åçš„ä¸¤ä¸ªå¯¹è±¡çš„æŒ‡é’ˆéƒ½çŸ¥é“ \n"
-			<< "è€Œdeleteæ“ä½œä¸è¡Œï¼Œå› ä¸ºåªçŸ¥é“å®ƒçš„ä¸‹ä¸€é¢å¯¹è±¡çš„æŒ‡é’ˆè€Œä¸çŸ¥é“ä¸Šä¸€ä¸ªå¯¹è±¡çš„æŒ‡é’ˆ"
+		cout << "insert¿ÉÒÔÔÚO(1)µÄÊ±¼äÍê³É£¬ÒòÎª²åÈë×ÜÊÇÔÚ±íÍ·½øĞĞ£¬ËùÒÔ²åÈëÎ»ÖÃÇ°ºóµÄÁ½¸ö¶ÔÏóµÄÖ¸Õë¶¼ÖªµÀ \n"
+			<< "¶ødelete²Ù×÷²»ĞĞ£¬ÒòÎªÖ»ÖªµÀËüµÄÏÂÒ»¶î¶ÔÏóµÄÖ¸Õë¶ø²»ÖªµÀÉÏÒ»¸ö¶ÔÏóµÄÖ¸Õë"
 			<< endl;
 	}
 };
@@ -290,14 +290,14 @@ struct listNode {
 	listNode *next;
 };
 ///////////////////////////////////////
-class Stack_list {//å•é“¾è¡¨å®ç°æ ˆ
+class Stack_list {//µ¥Á´±íÊµÏÖÕ»
 public:
 	Stack_list():head(&headNode){}
-	void push(listNode*x) {//æ€»æ˜¯æŠŠpushè¿›æ¥çš„å¯¹è±¡æ”¾åœ¨è¡¨å¤´
+	void push(listNode*x) {//×ÜÊÇ°Ñpush½øÀ´µÄ¶ÔÏó·ÅÔÚ±íÍ·
 		x->next = head->next;
 		head->next = x;
 	}
-	listNode* pop() {//å¼¹å‡ºè¡¨å¤´å¯¹è±¡
+	listNode* pop() {//µ¯³ö±íÍ·¶ÔÏó
 		if (empty()) {
 	//		cerr << "underflow !!!" << endl;
 			return nullptr;
@@ -336,7 +336,7 @@ public:
 		}
 		cout << endl;
 	}
-	~solution10_2_2() {//ææ„
+	~solution10_2_2() {//Îö¹¹
 		auto temp = list.pop();
 		while (temp) {
 			delete temp;
@@ -347,15 +347,15 @@ private:
 	Stack_list list;
 };
 ////////////////////////////
-class list_queue {//å•å‘é“¾è¡¨å®ç°é˜Ÿåˆ—
+class list_queue {//µ¥ÏòÁ´±íÊµÏÖ¶ÓÁĞ
 public:
 	list_queue() :head(&headNode) ,tail(head){}
-	void enqueue(listNode *key) {//å°†å¯¹è±¡æ’å…¥é“¾è¡¨çš„æœ€å
+	void enqueue(listNode *key) {//½«¶ÔÏó²åÈëÁ´±íµÄ×îºó
 		tail->next = key;
 		tail = key;
 	//	tail->next = nullptr;
 	}
-	listNode* dequeue() {//è®©è¡¨å¤´å…ƒç´ å‡ºé˜Ÿ
+	listNode* dequeue() {//ÈÃ±íÍ·ÔªËØ³ö¶Ó
 		if (empty())
 			return nullptr;
 		auto temp = head->next;
@@ -406,33 +406,33 @@ private:
 class solution10_2_4 {
 public:
 	void operator()() {
-		cout << "åœ¨whileå¾ªç¯ä¹‹å‰å°†L.nil.key=k,å¾ªç¯è¿­ä»£å®Œæˆåæ£€æµ‹x==L.nil,æ˜¯è¿”å›nilï¼Œå¦åˆ™è¿”å›x"
+		cout << "ÔÚwhileÑ­»·Ö®Ç°½«L.nil.key=k,Ñ­»·µü´úÍê³Éºó¼ì²âx==L.nil,ÊÇ·µ»Ønil£¬·ñÔò·µ»Øx"
 			<< endl;
 	}
 };
 //////////////////////
 class singly_circular_list {
 public:
-	singly_circular_list() :head(&headNode) { headNode.next = head; }//åˆå§‹åŒ–æ—¶è¡¨å¤´æŒ‡å‘è‡ªèº«
-	void insert(listNode *ele) {//åœ¨è¡¨å¤´å…ƒç´ åé¢æ’å…¥èŠ±è´¹O(1)
+	singly_circular_list() :head(&headNode) { headNode.next = head; }//³õÊ¼»¯Ê±±íÍ·Ö¸Ïò×ÔÉí
+	void insert(listNode *ele) {//ÔÚ±íÍ·ÔªËØºóÃæ²åÈë»¨·ÑO(1)
 		ele->next = head->next;
 		head->next = ele;
 	}
-	void Delete(listNode *ele) {//è¦æ‰¾åˆ°è¦åˆ é™¤å…ƒç´ çš„ä¸Šä¸€ä¸ªå…ƒç´ èŠ±è´¹Î˜(n)
-		if (head->next == ele) {//å¤„ç†è¦åˆ é™¤çš„å…ƒç´ å†è¡¨å¤´ï¼Œæ³¨æ„æ­¤æ—¶çš„headä¸ºå“¨å…µ
+	void Delete(listNode *ele) {//ÒªÕÒµ½ÒªÉ¾³ıÔªËØµÄÉÏÒ»¸öÔªËØ»¨·Ñ¦¨(n)
+		if (head->next == ele) {//´¦ÀíÒªÉ¾³ıµÄÔªËØÔÙ±íÍ·£¬×¢Òâ´ËÊ±µÄheadÎªÉÚ±ø
 			head->next = ele->next;
 			delete ele;
 			return;
 		}
 		auto temp = head->next;
-		while (temp!=head&&temp->next != ele)//å¤„ç†è¦åˆ é™¤çš„å…ƒç´ ä¸åœ¨è¡¨å¤´
+		while (temp!=head&&temp->next != ele)//´¦ÀíÒªÉ¾³ıµÄÔªËØ²»ÔÚ±íÍ·
 			temp = temp->next;
 		if (temp != head) {
 			temp->next = ele->next;
 			delete ele;
 		}
 	}
-	listNode* search(int key) {//æœ€åæƒ…å†µéå†æ•´ä¸ªè¡¨èŠ±è´¹Î˜(n)
+	listNode* search(int key) {//×î»µÇé¿ö±éÀúÕû¸ö±í»¨·Ñ¦¨(n)
 		auto temp = head->next;
 		head->key = key;
 		while (temp->key != key)
@@ -469,7 +469,7 @@ public:
 			list.Delete(list.search(i));
 			list.print_list();
 		}
-		cout << "è¿è¡Œæ—¶é—´çœ‹ä¸Šé¢æ³¨é‡Š" << endl;
+		cout << "ÔËĞĞÊ±¼ä¿´ÉÏÃæ×¢ÊÍ" << endl;
 	}
 private:
 	singly_circular_list list;
@@ -478,7 +478,7 @@ private:
 class solution10_2_6 {
 public:
 	void operator()() {
-		cout << "é“¾è¡¨" << endl;
+		cout << "Á´±í" << endl;
 	}
 };
 
@@ -487,25 +487,25 @@ public:
 	solution10_2_7():head(&headNode){}
 	void operator()() {
 		listNode *tail=head;
-		for (int i = 1; i != 10; ++i) {//åˆ¶é€ ä¸€ä¸ªé“¾è¡¨
+		for (int i = 1; i != 10; ++i) {//ÖÆÔìÒ»¸öÁ´±í
 			tail->next = new listNode(i);
-			tail = tail->next;//å¾ªç¯ç»“æŸåtailæŒ‡å‘æœ€åä¸€ä¸ªå…ƒç´ ï¼Œå¦‚æœå¯¹äºå·²ç»å­˜åœ¨çš„ä¸€ä¸ªé“¾è¡¨ï¼Œéœ€è¦éå†ä¸€éæ‰¾åˆ°
-		}//æœ€åä¸€ä¸ªå…ƒç´ ï¼ŒèŠ±è´¹Î˜(n)
+			tail = tail->next;//Ñ­»·½áÊøºótailÖ¸Ïò×îºóÒ»¸öÔªËØ£¬Èç¹û¶ÔÓÚÒÑ¾­´æÔÚµÄÒ»¸öÁ´±í£¬ĞèÒª±éÀúÒ»±éÕÒµ½
+		}//×îºóÒ»¸öÔªËØ£¬»¨·Ñ¦¨(n)
 		listNode *temp = head->next;
 		while (temp) {
 			cout << temp->key << "\t";
 			temp = temp->next;
 		}
 		cout << "\n" << endl;
-		listNode *tmp_a = head->next->next;//æŒ‡å‘ç¬¬2ä¸ªå…ƒç´ ï¼Œè¿™ä¸ªç¨‹åºå¹¶æ²¡æœ‰æ£€æµ‹æ€»å…ƒç´ ä¸º1æˆ–ç©ºä¸éœ€è¦äº¤æ¢çš„æƒ…å†µ
-		listNode *tmp_b = tmp_a->next;//å¦‚æœæœ‰ç¬¬3ä¸ªå…ƒç´ åˆ™æŒ‡å‘ç¬¬ä¸‰ä¸ªå…ƒç´ ï¼Œæ²¡æœ‰åˆ™ä¸ºç©º
+		listNode *tmp_a = head->next->next;//Ö¸ÏòµÚ2¸öÔªËØ£¬Õâ¸ö³ÌĞò²¢Ã»ÓĞ¼ì²â×ÜÔªËØÎª1»ò¿Õ²»ĞèÒª½»»»µÄÇé¿ö
+		listNode *tmp_b = tmp_a->next;//Èç¹ûÓĞµÚ3¸öÔªËØÔòÖ¸ÏòµÚÈı¸öÔªËØ£¬Ã»ÓĞÔòÎª¿Õ
 
-		head->next->next = nullptr;//è®°å½•å¥½ç¬¬2ä¸ªå…ƒç´ åå°†ç¬¬1ä¸ªå…ƒç´ çš„nextç½®ç©º
-		while (tmp_a) {//ç›´åˆ°tmp_aä¸ºç©º
+		head->next->next = nullptr;//¼ÇÂ¼ºÃµÚ2¸öÔªËØºó½«µÚ1¸öÔªËØµÄnextÖÃ¿Õ
+		while (tmp_a) {//Ö±µ½tmp_aÎª¿Õ
 			tmp_a->next = head->next;
-			head->next = tmp_a;//è¿™ä¸¤è¡Œå°†tam_aæŒ‡å‘çš„å…ƒç´ æ’å…¥åˆ°è¡¨å¤´èŠ±è´¹O(1)
-			tmp_a = tmp_b;//å°†tmp_aæŒ‡å‘tmp_b
-			if(tmp_b)//å¦‚æœtmp_bä¸ä¸ºç©ºåˆ™è¿›å…¥ä¸‹ä¸€ä¸ªå…ƒç´ 
+			head->next = tmp_a;//ÕâÁ½ĞĞ½«tam_aÖ¸ÏòµÄÔªËØ²åÈëµ½±íÍ·»¨·ÑO(1)
+			tmp_a = tmp_b;//½«tmp_aÖ¸Ïòtmp_b
+			if(tmp_b)//Èç¹ûtmp_b²»Îª¿ÕÔò½øÈëÏÂÒ»¸öÔªËØ
 				tmp_b = tmp_b->next;
 		}	
 		temp = head->next;
@@ -532,22 +532,22 @@ class solution10_2_8 {
 public:
 	typedef xorNode* pt_xor;
 	void operator()() {
-		cout << "è¿™é‡Œéœ€è¦çŸ¥é“å¼‚æˆ–çš„æ€§è´¨ï¼ŒA xor 0=A ,A xor A=0,A xor B xor A=B, A xor A xor B=B \n"
+		cout << "ÕâÀïĞèÒªÖªµÀÒì»òµÄĞÔÖÊ£¬A xor 0=A ,A xor A=0,A xor B xor A=B, A xor A xor B=B \n"
 			<< endl;
-		cout << "æ’å…¥å…ƒç´ å" << endl;
+		cout << "²åÈëÔªËØºó" << endl;
 		for (auto i : vect)
 			insert((pt_xor)(new xorNode(i)));
 		print();
-		cout << "æŸ¥æ‰¾2" << endl;
+		cout << "²éÕÒ2" << endl;
 		if (search(2))
 			cout << "finding " << endl;
-		cout << "æŸ¥æ‰¾21" << endl;
+		cout << "²éÕÒ21" << endl;
 		if (!search(21))
 			cout <<"finding nothing "<< endl;
-		cout << "åè½¬" << endl;
+		cout << "·´×ª" << endl;
 		reserve();
 		print();
-		cout << "åˆ é™¤å…·æœ‰å…³é”®å­—7çš„èŠ‚ç‚¹å" << endl;
+		cout << "É¾³ı¾ßÓĞ¹Ø¼ü×Ö7µÄ½Úµãºó" << endl;
 		del(search(7));
 		print();
 	}
@@ -556,7 +556,7 @@ private:
 	pt_xor ptx(pt_xor lhs, pt_xor rhs) { return (pt_xor)((unsigned int)(lhs) ^ (unsigned int)(rhs)); }
 	pt_xor head = (pt_xor)(new xorNode(INT_MIN));
 	pt_xor tail= (pt_xor)(new xorNode(INT_MIN));
-	void insert(pt_xor target) {//æ’å…¥
+	void insert(pt_xor target) {//²åÈë
 		if (!head->xor) {
 			head->xor = target;
 			target->xor= head;
@@ -569,7 +569,7 @@ private:
 		head->xor = target;
 	}
 
-	void print() {//æ‰“å°æ•´ä¸ªé“¾è¡¨
+	void print() {//´òÓ¡Õû¸öÁ´±í
 		if (!head->xor)
 			return;
 		auto target = head;
@@ -582,7 +582,7 @@ private:
 		}
 		cout << "\n" << endl;
 	}	
-	pt_xor search(int key) {//æŸ¥æ‰¾
+	pt_xor search(int key) {//²éÕÒ
 		if (!head->xor)
 			return nullptr;
 		auto target = head;
@@ -594,7 +594,7 @@ private:
 		}
 		return next;
 	}
-	void del(pt_xor target) {//åˆ é™¤
+	void del(pt_xor target) {//É¾³ı
 		if (!head->xor)
 			return;
 		auto last = head;
@@ -610,7 +610,7 @@ private:
 			next->xor = ptx(ptx(next->xor, tar), last);
 		}
 	}
-	void reserve() {//åè½¬O(1)
+	void reserve() {//·´×ªO(1)
 		auto temp = head->xor;
 		head->xor = tail->xor;
 		head->xor->xor = ptx(head->xor->xor, head);
@@ -628,7 +628,7 @@ public:
 			<<"key	8	13	19	11	5	4	\n"
 			<< "prev	6	\\	1	5	3	2"
 			<< "\n"<<endl;
-		cout << "å¤ªéº»çƒ¦äº†çœç•¥" << endl;
+		cout << "Ì«Âé·³ÁËÊ¡ÂÔ" << endl;
 	}
 };
 class link_list_array {
@@ -647,7 +647,7 @@ public:
 	}
 	void free_object(size_t x) {
 		if (x % 3 || x >= vect.size()) {
-			cout << "è¦åˆ é™¤çš„ä¸‹æ ‡ä¸æ­£ç¡®" << endl;
+			cout << "ÒªÉ¾³ıµÄÏÂ±ê²»ÕıÈ·" << endl;
 			return;
 		}
 		vect[x + 1] = free;
@@ -752,7 +752,7 @@ private:
 class solution10_4_1 {
 public:
 	void operator()() {
-		cout << "æ’ç‰ˆå¤ªéº»çƒ¦"
+		cout << "ÅÅ°æÌ«Âé·³"
 			<< endl;
 	}
 };
@@ -785,7 +785,7 @@ struct tree_node {
 
 class child_sibling_tree {
 public:
-	child_sibling_tree(){//åˆå§‹åŒ–ç”Ÿæˆleft_sibling_tree æ ‘
+	child_sibling_tree(){//³õÊ¼»¯Éú³Éleft_sibling_tree Ê÷
 		for (size_t i = 0; i != 8; ++i)
 			vect.push_back(shared_ptr<tree_node>(new tree_node(i)));
 		root = vect[0];
@@ -807,7 +807,7 @@ public:
 		print_tree(root);
 	}
 	void print_tree(shared_ptr<tree_node>&ptr) {
-		if (ptr) {//ä¹‹æ‰€ä»¥è¿™æ ·å¯è¡Œæ˜¯å› ä¸ºæ¯ä¸€ä¸ªæˆå‘˜éƒ½è¢«è¿™ä¸¤ç§ç±»å‹çš„æŒ‡é’ˆè‡³å°‘ä¸€ä¸ªæ‰€æŒ‡å¼•
+		if (ptr) {//Ö®ËùÒÔÕâÑù¿ÉĞĞÊÇÒòÎªÃ¿Ò»¸ö³ÉÔ±¶¼±»ÕâÁ½ÖÖÀàĞÍµÄÖ¸ÕëÖÁÉÙÒ»¸öËùÖ¸Òı
 			cout << ptr->key << endl;
 			print_tree(ptr->left_child);
 			print_tree ( ptr->right_sibling);
@@ -827,7 +827,7 @@ private:
 	child_sibling_tree tr;
 };
 
-//æ€è€ƒé¢˜
+//Ë¼¿¼Ìâ
 class solution10_1 {
 public:
 	void operator()() {
@@ -845,14 +845,14 @@ public:
 class solution10_2 {
 public:
 	void operator()() {
-		cout << "ä¸‰ç§æƒ…å†µå»ºç«‹ä¸€ä¸ªç©ºå †make_heapéƒ½æ˜¯å¸¸æ•°æ—¶é—´çš„ \n"
-			<< "ç”±äºæœ€å°å †çš„æ€§è´¨ï¼Œminimumå’Œextract-minä¹Ÿæ˜¯å¸¸æ•°æ—¶é—´ \n"
-			<< "å› ä¸ºé“¾è¡¨ä¸èƒ½éšæœºå­˜å–ï¼Œè¦æ‰¾åˆ°ä¸€ä¸ªèŠ‚ç‚¹å¿…é¡»éå†ä¸€äº›ä¸éœ€è¦çš„èŠ‚ç‚¹ï¼Œæ‰€ä»¥æ‰¾ä¸€ä¸ªçˆ¶èŠ‚ç‚¹æˆ–å­èŠ‚ç‚¹éœ€è¦èŠ±è´¹ \n"
-			<< "cnï¼Œæ‰€ä»¥ç›´æ¥ç”¨é“¾è¡¨çš„insertå’Œunionæ“ä½œä¸å¯èƒ½ä½äºcn \n"
-			<< "é‚£ä¹ˆå¯ä»¥éå†æ•´ä¸ªé“¾è¡¨æŠŠå…ƒç´ å­˜å…¥æ•°ç»„ï¼Œåœ¨æ•°ç»„ä¸Šå®ç°insertæ“ä½œï¼Œéœ€è¦èŠ±è´¹cn \n"
-			<< "è‡³äºåˆå¹¶æ“ä½œå¯ä»¥æŠŠä¸¤ä¸ªé“¾è¡¨çš„å…ƒç´ å­˜å…¥ä¸€ä¸ªæ•°ç»„ï¼Œå†åˆ©ç”¨å»ºå †èŠ±è´¹cn,æœ€åè½¬åŒ–æˆé“¾è¡¨ï¼Œè¿™æ ·çœ‹èµ·æ¥çš„éå¸¸ \n"
-			<< "å¯ç¬‘ï¼Œå› ä¸ºé“¾è¡¨åœ¨è¿™é‡Œæ²¡ä»€ä¹ˆç”¨ï¼Œå·²æ’åºï¼Œæœªæ’åºï¼Œä¸æƒ³äº¤ä¹Ÿæ²¡æœ‰ç”¨åˆ°ï¼Œæ‰€ä»¥å¾ˆå¤§å¯èƒ½æˆ‘æœªæŒ‰ä½œè€…çš„æ„å›¾è§£å†³ \n"
-			<< "è¿™ä¸ªé¢˜ç›®"
+		cout << "ÈıÖÖÇé¿ö½¨Á¢Ò»¸ö¿Õ¶Ñmake_heap¶¼ÊÇ³£ÊıÊ±¼äµÄ \n"
+			<< "ÓÉÓÚ×îĞ¡¶ÑµÄĞÔÖÊ£¬minimumºÍextract-minÒ²ÊÇ³£ÊıÊ±¼ä \n"
+			<< "ÒòÎªÁ´±í²»ÄÜËæ»ú´æÈ¡£¬ÒªÕÒµ½Ò»¸ö½Úµã±ØĞë±éÀúÒ»Ğ©²»ĞèÒªµÄ½Úµã£¬ËùÒÔÕÒÒ»¸ö¸¸½Úµã»ò×Ó½ÚµãĞèÒª»¨·Ñ \n"
+			<< "cn£¬ËùÒÔÖ±½ÓÓÃÁ´±íµÄinsertºÍunion²Ù×÷²»¿ÉÄÜµÍÓÚcn \n"
+			<< "ÄÇÃ´¿ÉÒÔ±éÀúÕû¸öÁ´±í°ÑÔªËØ´æÈëÊı×é£¬ÔÚÊı×éÉÏÊµÏÖinsert²Ù×÷£¬ĞèÒª»¨·Ñcn \n"
+			<< "ÖÁÓÚºÏ²¢²Ù×÷¿ÉÒÔ°ÑÁ½¸öÁ´±íµÄÔªËØ´æÈëÒ»¸öÊı×é£¬ÔÙÀûÓÃ½¨¶Ñ»¨·Ñcn,×îºó×ª»¯³ÉÁ´±í£¬ÕâÑù¿´ÆğÀ´µÄ·Ç³£ \n"
+			<< "¿ÉĞ¦£¬ÒòÎªÁ´±íÔÚÕâÀïÃ»Ê²Ã´ÓÃ£¬ÒÑÅÅĞò£¬Î´ÅÅĞò£¬²»Ïë½»Ò²Ã»ÓĞÓÃµ½£¬ËùÒÔºÜ´ó¿ÉÄÜÎÒÎ´°´×÷ÕßµÄÒâÍ¼½â¾ö \n"
+			<< "Õâ¸öÌâÄ¿"
 			<< endl;
 	}
 };

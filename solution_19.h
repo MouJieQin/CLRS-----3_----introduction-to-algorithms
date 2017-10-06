@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #ifndef _SOLUTION_19_H_
 #define _SOLUTION_19_H_
 #include<iostream>
@@ -52,7 +52,7 @@ public:
 
 	pt_fib minimum() { return min; }
 
-	fib_heap fib_union(fib_heap &lhs, fib_heap &rhs) {//è¿™ä¸ªç¨‹åºæ²¡æœ‰æµ‹è¯•è¿‡
+	fib_heap fib_union(fib_heap &lhs, fib_heap &rhs) {//Õâ¸ö³ÌÐòÃ»ÓÐ²âÊÔ¹ý
 		fib_heap result;
 		if (!lhs.min) {
 			result.min = rhs.min;
@@ -195,7 +195,7 @@ public:
 	}
 	void fib_heap_decrease_key(pt_fib tar, int k) {
 		if (k > tar->key) {
-			cout << "kæ¯”åŽŸæ¥çš„å…³é”®å­—å¤§" << endl;
+			cout << "k±ÈÔ­À´µÄ¹Ø¼ü×Ö´ó" << endl;
 			return;
 		}
 		tar->key = k;
@@ -258,7 +258,7 @@ public:
 	void operator()() {
 		vector<int>vect{ 23,3,7,17,24,18,52,38,30,26,46,39,41,35 };
 		cout << "\n-----------------------------------------\n";
-		cout << "æ’å…¥ä¸­..." << endl;
+		cout << "²åÈëÖÐ..." << endl;
 		for (auto i : vect) {
 			fib.fib_heap_insert(i);
 			fib.print(fib.minimum());
@@ -269,13 +269,13 @@ public:
 		while (n) {
 			auto t = fib.fib_heap_extract_min();
 			if(t)
-				cout << "æå–æœ€å°å€¼ä¸º" << t->key << endl;
+				cout << "ÌáÈ¡×îÐ¡ÖµÎª" << t->key << endl;
 			fib.print(fib.minimum());
 			cout << "\n-----------------------------------------\n";
 			--n;
 		}
-		cout << "å‡è®¾æ‰“å°å‡ºæ¥æ¯ä¸ªèŠ‚ç‚¹åœ¨åæ ‡ç³»ä¸­ï¼Œå…·æœ‰ç›¸åŒxåæ ‡çš„åœ¨åŒä¸€æ·±åº¦\n"
-			<< "æ·±åº¦ç›¸åŒçš„ä¸¤èŠ‚ç‚¹ä¹‹é—´çš„æ‰€æœ‰èŠ‚ç‚¹ä¸ºå…·æœ‰è¾ƒå°yåæ ‡çš„èŠ‚ç‚¹çš„å­©å­\n"
+		cout << "¼ÙÉè´òÓ¡³öÀ´Ã¿¸ö½ÚµãÔÚ×ø±êÏµÖÐ£¬¾ßÓÐÏàÍ¬x×ø±êµÄÔÚÍ¬Ò»Éî¶È\n"
+			<< "Éî¶ÈÏàÍ¬µÄÁ½½ÚµãÖ®¼äµÄËùÓÐ½ÚµãÎª¾ßÓÐ½ÏÐ¡y×ø±êµÄ½ÚµãµÄº¢×Ó\n"
 			<< endl;
 	}
 private:
@@ -286,7 +286,7 @@ class solution19_3_1 {
 public:
 	void operator()() {
 		cout<<"A root in the heap became marked because it at some point had a child"
-			<<"whose key was decreased.It doesnâ€™t add the potential for having to do any"
+			<<"whose key was decreased.It doesn¡¯t add the potential for having to do any"
 			<< "more actual work for it to be marked.This is because the only time that"
 			<< "markedness is checked is in line 3 of cascading cut.This however is only ever"
 			<< "run on nodes whose parent is non NIL.Since every root has NIL as it parent,"
@@ -300,10 +300,10 @@ public:
 class solution19_3_2 {
 public:
 	void operator()() {
-		cout << "æ¯æ¬¡çš„æ“ä½œè¿è¡Œæ—¶é—´æ˜¯consolidateçš„è¿­ä»£æ¬¡æ•°ï¼Œæ¯æ¬¡è¿­ä»£\n"
-			<< "éƒ½è‡³å°‘ä¼šæœ‰ä¸€ä¸ªèŠ‚ç‚¹è¿›å…¥æ ¹é“¾è¡¨ï¼Œå½“æ‰€æœ‰èŠ‚ç‚¹éƒ½è¿›å…¥æ ¹é“¾è¡¨åŽ\n"
-			<< "è¯¥æ“ä½œçš„è¿è¡Œæ—¶é—´ä¸ºO(1)ï¼Œæ‰€ä»¥næ¬¡æ“ä½œçš„æ€»è¿è¡Œæ—¶é—´ä¸ºO(n),\n"
-			<< "å¹³æ‘Šæ¯æ¬¡è¿è¡Œæ—¶é—´ä¸ºO(1)"
+		cout << "Ã¿´ÎµÄ²Ù×÷ÔËÐÐÊ±¼äÊÇconsolidateµÄµü´ú´ÎÊý£¬Ã¿´Îµü´ú\n"
+			<< "¶¼ÖÁÉÙ»áÓÐÒ»¸ö½Úµã½øÈë¸ùÁ´±í£¬µ±ËùÓÐ½Úµã¶¼½øÈë¸ùÁ´±íºó\n"
+			<< "¸Ã²Ù×÷µÄÔËÐÐÊ±¼äÎªO(1)£¬ËùÒÔn´Î²Ù×÷µÄ×ÜÔËÐÐÊ±¼äÎªO(n),\n"
+			<< "Æ½Ì¯Ã¿´ÎÔËÐÐÊ±¼äÎªO(1)"
 			<< endl;
 	}
 };
@@ -311,7 +311,7 @@ public:
 class solution19_4_1 {
 public:
 	void operator()() {
-		cout << "ä»Žç©ºå †å¼€å§‹ï¼Œnä¸ªæ“ä½œéƒ½åªæ˜¯æ’å…¥å…ƒç´ "
+		cout << "´Ó¿Õ¶Ñ¿ªÊ¼£¬n¸ö²Ù×÷¶¼Ö»ÊÇ²åÈëÔªËØ"
 			<< endl;
 	}
 };
@@ -319,7 +319,7 @@ public:
 class solution19_4_2 {
 public:
 	void operator()() {
-		cout << "å¸¸æ•°"
+		cout << "³£Êý"
 			<< endl;
 	}
 };

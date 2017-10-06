@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #ifndef _SOLUTION_2
 #define _SOLUTION_2
 #include<vector>
@@ -28,7 +28,7 @@ private:
 
 class solution2_1_2{
 public:
-	void operator()(vector<int>&refv) {//éé™åºæ’åº
+	void operator()(vector<int>&refv) {//·Ç½µĞòÅÅĞò
 		for (auto i = 1; i != refv.size(); ++i) {
 			auto key = refv[i];
 			auto j =i - 1;
@@ -39,7 +39,7 @@ public:
 	}
 };
 
-class solution2_1_3 {//æŸ¥æ‰¾å…³é”®å­—
+class solution2_1_3 {//²éÕÒ¹Ø¼ü×Ö
 public:
 	int operator()(vector<int>&refv, size_t n,int v) {
 		auto i = 0;
@@ -49,31 +49,31 @@ public:
 	}
 };
 
-class solution2_1_4 {//è®¡ç®—ä¸¤ä¸ªstringå½¢å¼äºŒè¿›åˆ¶çš„å’Œï¼Œä½æ•°å¯ä¸ç›¸åŒ
+class solution2_1_4 {//¼ÆËãÁ½¸östringĞÎÊ½¶ş½øÖÆµÄºÍ£¬Î»Êı¿É²»ÏàÍ¬
 public:
 	string operator()( string &lhs, string &rhs) {
 		auto lhsSize = lhs.size();
-		auto rhsSize = rhs.size();//ç”¨0å°†è¾ƒçŸ­çš„äºŒè¿›åˆ¶æ•°è¡¥é½
+		auto rhsSize = rhs.size();//ÓÃ0½«½Ï¶ÌµÄ¶ş½øÖÆÊı²¹Æë
 		lhsSize > rhsSize ? rhs = string(lhsSize - rhsSize, '0') + rhs : lhs = string(rhsSize - lhsSize, '0') + lhs;
-		auto pre= adder('0', lhs.back(), rhs.back());//æœ€ä½ä½åŠ æ³•è¾ƒç‰¹æ®Šæ— è¿›ä½ï¼Œå•ç‹¬å¤„ç†
-		string result = string()+pre.first;//å­˜å‚¨ç»“æœ
-		char carry = pre.second;//è®°å½•è¿›ä½
-		int n = lhs.size()-2;//ä»ä½äºŒä½å¼€å§‹è®¡ç®—
-		while (n >=0) {//è¿­ä»£è®¡ç®—
+		auto pre= adder('0', lhs.back(), rhs.back());//×îµÍÎ»¼Ó·¨½ÏÌØÊâÎŞ½øÎ»£¬µ¥¶À´¦Àí
+		string result = string()+pre.first;//´æ´¢½á¹û
+		char carry = pre.second;//¼ÇÂ¼½øÎ»
+		int n = lhs.size()-2;//´ÓµÍ¶şÎ»¿ªÊ¼¼ÆËã
+		while (n >=0) {//µü´ú¼ÆËã
 			pre=adder(carry, lhs[n], rhs[n]);
 			result = pre.first + result;
 			carry= pre.second;
 			--n;
 		}		
-		return pre.second+result;//åŠ ä¸Šæœ€é«˜ä½çš„è¿›ä½
+		return pre.second+result;//¼ÓÉÏ×î¸ßÎ»µÄ½øÎ»
 	}
 private:
-	pair<char,char>half_adder(const char lhs, const char rhs) {//åŠåŠ å™¨ï¼Œä¸¤ä½è¾“å…¥ï¼Œè¾“å‡ºfirstä¸ºå’Œæ•°ï¼Œsecondä¸ºè¿›ä½æ•°
+	pair<char,char>half_adder(const char lhs, const char rhs) {//°ë¼ÓÆ÷£¬Á½Î»ÊäÈë£¬Êä³öfirstÎªºÍÊı£¬secondÎª½øÎ»Êı
 		return
 			lhs == '1' ? rhs == '1' ? make_pair('0', '1') : make_pair('1', '0') : rhs == '1' ? make_pair('1', '0') : make_pair('0', '0');
 	}
-	char orer(const char lhs, const char rhs) { if (lhs == '1' || rhs == '1')return '1'; return '0'; }//æˆ–é€»è¾‘
-	pair<char, char>adder(const char carry, const char lhs, const char rhs) {//å…¨åŠ å™¨ï¼Œå¤šä¸€ä¸ªè¿›ä½è¾“å…¥ï¼Œfirstä¸ºå’Œæ•°ï¼Œsecondä¸ºè¿›ä½æ•°ï¼›
+	char orer(const char lhs, const char rhs) { if (lhs == '1' || rhs == '1')return '1'; return '0'; }//»òÂß¼­
+	pair<char, char>adder(const char carry, const char lhs, const char rhs) {//È«¼ÓÆ÷£¬¶àÒ»¸ö½øÎ»ÊäÈë£¬firstÎªºÍÊı£¬secondÎª½øÎ»Êı£»
 		auto sumbit_carry_one = half_adder(lhs, rhs);
 		auto sumbit_carry_two = half_adder(carry, sumbit_carry_one.first);
 		return
@@ -83,19 +83,19 @@ private:
 
 class solution2_2_2 {
 public:
-	void operator()(vector<int>&rv) {//é€‰æ‹©æ’åº
-		for (auto i = 0; i != rv.size() - 1; ++i) {//å¾ªç¯ä½“å°†è¿›è¡Œn-1æ¬¡
-			auto n = findMin(rv, i, rv.size());//i=1 (n-1)âˆ‘(Ti)=n*(n-1)/2=Î˜(n^2)
-			auto min = rv[n];//å¸¸æ•°æ—¶é—´
-			int temp = rv[i];//å¸¸æ•°æ—¶é—´
-			rv[i] = min;//å¸¸æ•°æ—¶é—´
-			rv[n] = temp;//å¸¸æ•°æ—¶é—´
+	void operator()(vector<int>&rv) {//Ñ¡ÔñÅÅĞò
+		for (auto i = 0; i != rv.size() - 1; ++i) {//Ñ­»·Ìå½«½øĞĞn-1´Î
+			auto n = findMin(rv, i, rv.size());//i=1 (n-1)¡Æ(Ti)=n*(n-1)/2=¦¨(n^2)
+			auto min = rv[n];//³£ÊıÊ±¼ä
+			int temp = rv[i];//³£ÊıÊ±¼ä
+			rv[i] = min;//³£ÊıÊ±¼ä
+			rv[n] = temp;//³£ÊıÊ±¼ä
 		}
-	}//æˆ‘å†™çš„è¿™ä¸ªé€‰æ‹©æ’åºæ³•æœ€å¥½å’Œæœ€åçš„æ€»æ—¶é—´éƒ½ä¸ºT(n)=(n-1)*n*(n-1)/2=Î˜(n^3) ç®—æ³•åˆ†æï¼š
-	//åˆå§‹åŒ–ï¼šç¬¬1æ¬¡äº¤æ¢åç¬¬1ä½ä¸ºç¬¬1å°çš„å€¼
-	//ä¿æŒï¼šç¬¬kæ¬¡äº¤æ¢åç¬¬kä½ä¸ºç¬¬kå°çš„å€¼ï¼Œ1åˆ°kä½å·²æ’åº;
-	//ç»ˆæ­¢ï¼šç¬¬n-1æ¬¡äº¤æ¢åç¬¬n-1ä½ä¸ºç¬¬n-1å°çš„å€¼ï¼Œç¬¬nä½åªèƒ½æ˜¯ä¸å¤§äºn-1ä½çš„å€¼
-	//å¦‚è‹¥ä¸ç„¶åº”ä¸n-1ä½äº¤æ¢ï¼Œä¸å‡è®¾çŸ›ç›¾ï¼Œæ‰€ä»¥ä¸éœ€è¦å¯¹nä¸ªå…ƒç´ è¿è¡Œ
+	}//ÎÒĞ´µÄÕâ¸öÑ¡ÔñÅÅĞò·¨×îºÃºÍ×î»µµÄ×ÜÊ±¼ä¶¼ÎªT(n)=n*(n-1)/2=¦¨(n^2) Ëã·¨·ÖÎö£º
+	//³õÊ¼»¯£ºµÚ1´Î½»»»ºóµÚ1Î»ÎªµÚ1Ğ¡µÄÖµ
+	//±£³Ö£ºµÚk´Î½»»»ºóµÚkÎ»ÎªµÚkĞ¡µÄÖµ£¬1µ½kÎ»ÒÑÅÅĞò;
+	//ÖÕÖ¹£ºµÚn-1´Î½»»»ºóµÚn-1Î»ÎªµÚn-1Ğ¡µÄÖµ£¬µÚnÎ»Ö»ÄÜÊÇ²»´óÓÚn-1Î»µÄÖµ
+	//ÈçÈô²»È»Ó¦Óën-1Î»½»»»£¬Óë¼ÙÉèÃ¬¶Ü£¬ËùÒÔ²»ĞèÒª¶Ôn¸öÔªËØÔËĞĞ
 private:
 	int findMin(vector<int>&rv,size_t beg, size_t end) {
 		size_t n(beg);
@@ -112,8 +112,8 @@ private:
 class solution2_2_3 {
 public:
 	void operator()() {
-		cout << "å¹³å‡éœ€è¦æ£€æŸ¥æ€»å…ƒç´ æ•°é‡çš„ä¸€åŠ\n T(n)=n/2=Î˜(n)\
-			\næœ€åæƒ…å†µä¸ºæ€»æ˜¯åœ¨æœ€åä¸€ä¸ªæ‰¾åˆ°æ‰€éœ€å…ƒç´ \n T(n)=n=Î˜(n)" << endl;
+		cout << "Æ½¾ùĞèÒª¼ì²é×ÜÔªËØÊıÁ¿µÄÒ»°ë\n T(n)=n/2=¦¨(n)\
+			\n×î»µÇé¿öÎª×ÜÊÇÔÚ×îºóÒ»¸öÕÒµ½ËùĞèÔªËØ\n T(n)=n=¦¨(n)" << endl;
 	}
 };
 
@@ -124,23 +124,23 @@ public:
 	}
 private:
 	void merge_sort(vector<int>&vect, size_t beg, size_t end) {
-		if (beg < end) {//åªæœ‰å®¹å™¨ä¸­çš„æ•°å¤§äº1ä¸ªæ—¶æ‰å¼€å§‹åˆå¹¶
-			auto mid = (beg + end) / 2;//å–ä¸­é—´å€¼
-			merge_sort(vect, beg, mid);//é€’å½’åˆ†æ²»ï¼Œä¸‹åŒ
+		if (beg < end) {//Ö»ÓĞÈİÆ÷ÖĞµÄÊı´óÓÚ1¸öÊ±²Å¿ªÊ¼ºÏ²¢
+			auto mid = (beg + end) / 2;//È¡ÖĞ¼äÖµ
+			merge_sort(vect, beg, mid);//µİ¹é·ÖÖÎ£¬ÏÂÍ¬
 			merge_sort(vect, mid + 1, end);
-			merge(vect, beg, mid, end);//åˆå¹¶
+			merge(vect, beg, mid, end);//ºÏ²¢
 		}
 	}
 	void merge(vector<int>&vect,size_t beg, size_t mid, size_t end) {
-		vector<int>larr(&vect[beg], &vect[mid+1]);//åˆå§‹åŒ–å·¦å®¹å™¨ï¼Œä¸‹åŒ
+		vector<int>larr(&vect[beg], &vect[mid+1]);//³õÊ¼»¯×óÈİÆ÷£¬ÏÂÍ¬
 		vector<int>rarr(&vect[mid+1], &vect[end] + 1);
-		larr.push_back(INT_MAX);//è®¾ç½®å“¨å…µï¼Œä¸‹åŒ
+		larr.push_back(INT_MAX);//ÉèÖÃÉÚ±ø£¬ÏÂÍ¬
 		rarr.push_back(INT_MAX);
 		auto lbeg = larr.begin();
 		auto rbeg = rarr.begin();
-		for (auto n=beg; n != end+1; ++n)//å–å·¦å³å®¹å™¨ä¸­è¾ƒå°çš„æ•°å­˜å…¥åŸå®¹å™¨
+		for (auto n=beg; n != end+1; ++n)//È¡×óÓÒÈİÆ÷ÖĞ½ÏĞ¡µÄÊı´æÈëÔ­ÈİÆ÷
 			vect[n] = *lbeg < *rbeg ? *lbeg++ : *rbeg++;
-		for (auto n = beg; n != end + 1; ++n)//æ‰“å°æ’åºè¿‡ç¨‹
+		for (auto n = beg; n != end + 1; ++n)//´òÓ¡ÅÅĞò¹ı³Ì
 			cout << vect[n] << "\t";
 		cout << endl;
 	}
@@ -154,21 +154,21 @@ public:
 	}
 private:
 	void merge_sort(vector<int>&vect, size_t beg, size_t end) {
-			if (beg < end) {//åªæœ‰å®¹å™¨ä¸­çš„æ•°å¤§äº1ä¸ªæ—¶æ‰å¼€å§‹åˆå¹¶
-				auto mid = (beg + end) / 2;//å–ä¸­é—´å€¼
-				merge_sort(vect, beg, mid);//é€’å½’åˆ†æ²»ï¼Œä¸‹åŒ
+			if (beg < end) {//Ö»ÓĞÈİÆ÷ÖĞµÄÊı´óÓÚ1¸öÊ±²Å¿ªÊ¼ºÏ²¢
+				auto mid = (beg + end) / 2;//È¡ÖĞ¼äÖµ
+				merge_sort(vect, beg, mid);//µİ¹é·ÖÖÎ£¬ÏÂÍ¬
 				merge_sort(vect, mid + 1, end);
-				merge(vect, beg, mid, end);//åˆå¹¶
+				merge(vect, beg, mid, end);//ºÏ²¢
 		}
 	}
 	void merge(vector<int>&vect, size_t beg, size_t mid, size_t end) {
-		vector<int>larr(&vect[beg], &vect[mid + 1]);//åˆå§‹åŒ–å·¦å®¹å™¨ï¼Œä¸‹åŒ
+		vector<int>larr(&vect[beg], &vect[mid + 1]);//³õÊ¼»¯×óÈİÆ÷£¬ÏÂÍ¬
 		vector<int>rarr(&vect[mid + 1], &vect[end] + 1);
 		auto lbeg = larr.begin();
 		auto rbeg = rarr.begin();
-		for (; lbeg != larr.end() && rbeg != rarr.end(); ++beg)//å–å·¦å³å®¹å™¨ä¸­è¾ƒå°çš„æ•°å­˜å…¥åŸå®¹å™¨
+		for (; lbeg != larr.end() && rbeg != rarr.end(); ++beg)//È¡×óÓÒÈİÆ÷ÖĞ½ÏĞ¡µÄÊı´æÈëÔ­ÈİÆ÷
 			vect[beg] = *lbeg < *rbeg ? *lbeg++ : *rbeg++;
-		while (lbeg != larr.end())//å°†æœªç©ºçš„å®¹å™¨ä¸­çš„æ‰€æœ‰æ•°æ”¾è¿›åŸå®¹å™¨ï¼Œä¸‹åŒ
+		while (lbeg != larr.end())//½«Î´¿ÕµÄÈİÆ÷ÖĞµÄËùÓĞÊı·Å½øÔ­ÈİÆ÷£¬ÏÂÍ¬
 			vect[beg++] = *lbeg++;
 		while (rbeg != rarr.end())
 			vect[beg++] = *rbeg++;
@@ -177,10 +177,10 @@ private:
 class solution2_3_3 {
 public:
 	void operator()() {
-		cout << "1.å½“k=1æ—¶ï¼ŒT(n)=2=(2)lg(2)ï¼Œç­‰å¼æˆç«‹\n"
-			<< "2.å½“k>1æ—¶ï¼Œå‡è®¾T(n)=nlgnæˆç«‹ï¼Œåˆ™T(2^(k))=2*T(2^(k-1))+2^(k)=k*2^(k)\n"
-			<< "3.T(2^(k+1))=2T(2^(k))+2^(k+1),å°†æ­¤å¼ä¸­çš„T(2^(k))ç”¨ä¸Šå¼ä¸­çš„k*2^(k)æ›¿æ¢\n"
-			<< "å¾—T(2^(k+1))=(k+1)*2^(k+1)=åŸå‡è®¾è§£nlgnè®¡ç®—å‡ºæ¥çš„å…¬å¼,æ•…å¾—è¯" << endl;
+		cout << "1.µ±k=1Ê±£¬T(n)=2=(2)lg(2)£¬µÈÊ½³ÉÁ¢\n"
+			<< "2.µ±k>1Ê±£¬¼ÙÉèT(n)=nlgn³ÉÁ¢£¬ÔòT(2^(k))=2*T(2^(k-1))+2^(k)=k*2^(k)\n"
+			<< "3.T(2^(k+1))=2T(2^(k))+2^(k+1),½«´ËÊ½ÖĞµÄT(2^(k))ÓÃÉÏÊ½ÖĞµÄk*2^(k)Ìæ»»\n"
+			<< "µÃT(2^(k+1))=(k+1)*2^(k+1)=Ô­¼ÙÉè½ânlgn¼ÆËã³öÀ´µÄ¹«Ê½,¹ÊµÃÖ¤" << endl;
 	}
 };
 class solution2_3_4 {
@@ -194,48 +194,48 @@ public:
 class solution2_3_5 {
 public:
 	int operator()(int key) {
-		auto beg = 0;//å¼€å§‹èŒƒå›´åæ ‡
-		auto end = vect.size() - 1;//ç»“æŸèŒƒå›´åæ ‡
-		int mid;//ä¸­é—´å€¼
+		auto beg = 0;//¿ªÊ¼·¶Î§×ø±ê
+		auto end = vect.size() - 1;//½áÊø·¶Î§×ø±ê
+		int mid;//ÖĞ¼äÖµ
 		cout << prove << endl;
-		while (mid=(beg+end)/2,beg != end&&key != vect[mid]) //äºŒåˆ†æŸ¥æ‰¾ï¼Œvectå·²æ’åº
-			key < vect[mid] ? end = mid : beg = mid + 1;//è°ƒæ•´æŸ¥æ‰¾èŒƒå›´
-		return  key == vect[mid] ? mid : -1;//å¦‚æœæ‰¾åˆ°è¿”å›ä¸‹æ ‡ï¼Œå¦‚æœæ²¡æ‰¾åˆ°è¿”å›-1
+		while (mid=(beg+end)/2,beg != end&&key != vect[mid]) //¶ş·Ö²éÕÒ£¬vectÒÑÅÅĞò
+			key < vect[mid] ? end = mid : beg = mid + 1;//µ÷Õû²éÕÒ·¶Î§
+		return  key == vect[mid] ? mid : -1;//Èç¹ûÕÒµ½·µ»ØÏÂ±ê£¬Èç¹ûÃ»ÕÒµ½·µ»Ø-1
 	}
 private:
 	vector<int>vect{ 1,2,3,4,5,6,7,8 };
-	string prove = "äºŒåˆ†æŸ¥æ‰¾å¾ªç¯æˆ–è¿­ä»£ä¸­æœ€å¤šè¿è¡Œlgnæ¬¡ä¾¿é€€å‡ºå¾ªç¯ï¼Œ\
-		\nå› ä¸ºæœ€å¤šé™¤ä»¥lgnæ¬¡2åbeg=end,æœ€åçš„æŸ¥æ‰¾èŒƒå›´åªæœ‰ä¸€ä¸ªåŸèŒƒå›´ä¸­æœ€æ¥è¿‘æˆ–ç­‰äºå…³é”®å­—çš„å€¼";
+	string prove = "¶ş·Ö²éÕÒÑ­»·»òµü´úÖĞ×î¶àÔËĞĞlgn´Î±ãÍË³öÑ­»·£¬\
+		\nÒòÎª×î¶à³ıÒÔlgn´Î2ºóbeg=end,×îºóµÄ²éÕÒ·¶Î§Ö»ÓĞÒ»¸öÔ­·¶Î§ÖĞ×î½Ó½ü»òµÈÓÚ¹Ø¼ü×ÖµÄÖµ";
 };
 
 class solution2_3_6 {
 public:
 	int operator()(vector<int>&vect) {
-		cout << "ä¸èƒ½æ”¹å–„ï¼Œå› ä¸ºæœ€åæƒ…å†µä¸‹å³ä½¿äºŒåˆ†æŸ¥æ‰¾æ‰¾åˆ°å…³é”®å­—çš„æ­£ç¡®ä½ç½®ï¼Œä¹Ÿè¿˜æ˜¯éœ€è¦å°†å·²æ’åºçš„iä¸ªæ•°å…¨ä½“åç§»ä¸€ä½"
+		cout << "²»ÄÜ¸ÄÉÆ£¬ÒòÎª×î»µÇé¿öÏÂ¼´Ê¹¶ş·Ö²éÕÒÕÒµ½¹Ø¼ü×ÖµÄÕıÈ·Î»ÖÃ£¬Ò²»¹ÊÇĞèÒª½«ÒÑÅÅĞòµÄi¸öÊıÈ«ÌåºóÒÆÒ»Î»"
 			<< endl;
 	}
 };
 
 class solution2_3_7 {
-public://å¯ä»¥æ”¹è¿›åˆ°Î˜(nlgn),å…ˆç”¨ä¸€ä¸ªÎ˜(nlgn)æ’åºæ³•å°†vectæ’åº
-	pair<int, int>operator()(vector<int>&vect,int sum) {//å‡è®¾vectå·²ç”¨ä¸€ä¸ªÎ˜(nlgn)æ’åºæ³•å¦‚å½’å¹¶æ’åº
-		solution2_3_2 merge_sort;// è°ƒç”¨å½’å¹¶æ’åº
+public://¿ÉÒÔ¸Ä½øµ½¦¨(nlgn),ÏÈÓÃÒ»¸ö¦¨(nlgn)ÅÅĞò·¨½«vectÅÅĞò
+	pair<int, int>operator()(vector<int>&vect,int sum) {//¼ÙÉèvectÒÑÓÃÒ»¸ö¦¨(nlgn)ÅÅĞò·¨Èç¹é²¢ÅÅĞò
+		solution2_3_2 merge_sort;// µ÷ÓÃ¹é²¢ÅÅĞò
 		merge_sort(vect);
-		for (auto i = 0; i != vect.size()-1; ++i) {//æœ€åæƒ…å†µå¾ªç¯næ¬¡
+		for (auto i = 0; i != vect.size()-1; ++i) {//×î»µÇé¿öÑ­»·n´Î
 			auto key = sum - vect[i];//
-			int beg = i+1;//ä¸èƒ½ä½¿ç”¨ç›¸åŒå…ƒç´ ï¼Œä¸”ä¹‹å‰æŸ¥æ‰¾è¿‡å¾—å…ƒç´ ä¸ç”¨è€ƒè™‘åœ¨å†…
+			int beg = i+1;//²»ÄÜÊ¹ÓÃÏàÍ¬ÔªËØ£¬ÇÒÖ®Ç°²éÕÒ¹ıµÃÔªËØ²»ÓÃ¿¼ÂÇÔÚÄÚ
 			int end = vect.size() - 1;
 			int mid=0;
-			if (key<vect[beg]|| key>vect.back())continue;//ä¼˜åŒ–
-			while (mid = (beg + end) / 2, beg != end&&key != vect[mid])//äºŒåˆ†æŸ¥æ‰¾Î˜(lgn)
+			if (key<vect[beg]|| key>vect.back())continue;//ÓÅ»¯
+			while (mid = (beg + end) / 2, beg != end&&key != vect[mid])//¶ş·Ö²éÕÒ¦¨(lgn)
 				key < vect[mid] ? end = mid : beg = mid + 1;
-			return key == vect[mid] ? make_pair(i, mid) : make_pair(-1, -1);//è¿”å›æ’åºåçš„ä¸‹æ ‡ï¼Œæ²¡æœ‰è¿”å›(-1,-1)
-		}//è¯¥å¾ªç¯ä½“çš„æ€»æ—¶é—´n*Î˜(lgn)=Î˜(nlgn)
+			return key == vect[mid] ? make_pair(i, mid) : make_pair(-1, -1);//·µ»ØÅÅĞòºóµÄÏÂ±ê£¬Ã»ÓĞ·µ»Ø(-1,-1)
+		}//¸ÃÑ­»·ÌåµÄ×ÜÊ±¼än*¦¨(lgn)=¦¨(nlgn)
 		return{ -1, -1};
-	}//è¯¥å‡½æ•°çš„æ€»æ—¶é—´ä¸ºÎ˜(nlgn)+Î˜(nlgn)=Î˜(nlgn)
+	}//¸Ãº¯ÊıµÄ×ÜÊ±¼äÎª¦¨(nlgn)+¦¨(nlgn)=¦¨(nlgn)
 };
 
-//æ€è€ƒé¢˜
+//Ë¼¿¼Ìâ
 class solution2_1 {
 public:
 	void operator()(vector<int>&vect, size_t k) {
@@ -245,12 +245,12 @@ public:
 		cout << prove_d << endl;
 	}
 private:
-	string prove_a="a.å•ä¸ªé•¿åº¦ä¸ºkçš„çš„å­è¡¨æœ€åæƒ…å†µä¸ºÎ˜(k^2),ä¸€å…±æœ‰n/kä¸ªå­è¡¨ï¼Œæ€»æ—¶é—´T(n)=n/k*Î˜(k^2)=Î˜(nk)";
-	string prove_b = "b.ä»å›¾2-5å¯çŸ¥æ¯ä¸€å±‚åˆå¹¶çš„æ€»æ—¶é—´éƒ½ä¸ºcnï¼Œcä¸ºå¸¸é‡å› å­ï¼Œæ­¤é¢˜æœ€åº•å±‚åªåˆ°æœ‰n/kä¸ªå­è¡¨çš„é‚£å±‚ï¼Œ\
-		\næ ‘çš„é«˜åº¦lg(n/k)+1,æ¯å±‚å½’å¹¶çš„ä»£ä»·éƒ½ä¸ºnï¼ŒT(n)=cn*(lg(n/k)+1)=Î˜(nlg(n/k))";
-	string prove_c = "c.Î˜(nk+nlg(n/k))=Î˜(nk+nlgn-nlgk),å¯ä»¥çœ‹å‡ºnlgkçš„å¢é•¿é‡çº§æ²¡æœ‰nké«˜ï¼Œæ•…åŸå¼=Î˜(nk+nlgn)\
-				\nä¹Ÿå°±æ˜¯è¦è®©Î˜(nk+nlgn)=Î˜(nlgn),nkè¦å°äºç­‰äºnlgnå¾—é‡çº§ï¼Œæ•…k=Î˜(lgn)";
-	string prove_d = "d.è¾“å…¥è§„æ¨¡ä¸ºkæ—¶ï¼Œæ’å…¥æ’åºå’Œå½’å¹¶æ’åºçš„æ—¶é—´ä¸€æ ·é•¿çš„æ—¶å€™";
+	string prove_a="a.µ¥¸ö³¤¶ÈÎªkµÄµÄ×Ó±í×î»µÇé¿öÎª¦¨(k^2),Ò»¹²ÓĞn/k¸ö×Ó±í£¬×ÜÊ±¼äT(n)=n/k*¦¨(k^2)=¦¨(nk)";
+	string prove_b = "b.´ÓÍ¼2-5¿ÉÖªÃ¿Ò»²ãºÏ²¢µÄ×ÜÊ±¼ä¶¼Îªcn£¬cÎª³£Á¿Òò×Ó£¬´ËÌâ×îµ×²ãÖ»µ½ÓĞn/k¸ö×Ó±íµÄÄÇ²ã£¬\
+		\nÊ÷µÄ¸ß¶Èlg(n/k)+1,Ã¿²ã¹é²¢µÄ´ú¼Û¶¼Îªn£¬T(n)=cn*(lg(n/k)+1)=¦¨(nlg(n/k))";
+	string prove_c = "c.¦¨(nk+nlg(n/k))=¦¨(nk+nlgn-nlgk),¿ÉÒÔ¿´³önlgkµÄÔö³¤Á¿¼¶Ã»ÓĞnk¸ß£¬¹ÊÔ­Ê½=¦¨(nk+nlgn)\
+				\nÒ²¾ÍÊÇÒªÈÃ¦¨(nk+nlgn)=¦¨(nlgn),nkÒªĞ¡ÓÚµÈÓÚnlgnµÃÁ¿¼¶£¬¹Êk=¦¨(lgn)";
+	string prove_d = "d.ÊäÈë¹æÄ£ÎªkÊ±£¬²åÈëÅÅĞòºÍ¹é²¢ÅÅĞòµÄÊ±¼äÒ»Ñù³¤µÄÊ±ºò";
 };
 
 class solution2_2 {
@@ -262,12 +262,12 @@ public:
 		cout << prove_d << endl;
 	}
 private:
-	string prove_a = "a.æˆ‘ä»¬éœ€è¦è¯æ˜ Aâ€² æ˜¯ A çš„ä¸€ä¸ªæ’åˆ—";//å€Ÿé‰´ï¼Œæ³¨æ„å…ƒç´ èµ·å§‹åæ ‡æ˜¯0ï¼Œç»“æ„å¹¶ä¸å®Œæ•´
-	string prove_b = "b.å¾ªç¯ä¸å˜å¼ï¼šA[j-1]æ˜¯A[i...n-1]ä¸ªå…ƒç´ çš„æœ€å°å…ƒç´ ï¼Œä¿æŒ:æ¯æ¬¡äº¤æ¢éƒ½å°†å·²æ¯”è¾ƒçš„æœ€å°å…ƒç´ å‰ç§»";
-	string prove_c = "c.èµ·å§‹æ—¶A[0...i-1]çš„å…ƒç´ ä¸ºç©ºï¼Œå¾ªç¯ä¸å˜å¼æ˜¾ç„¶æˆç«‹ï¼Œ\
-		\nä¿æŒï¼šç¬¬2åˆ°4è¡Œforå¾ªç¯æ¯æ¬¡è¿­ä»£å‰ï¼Œå­æ•°ç»„A[0...i-1]æŒ‰ä»å°åˆ°å¤§çš„é¡ºåºåŒ…å«åŸæ•°ç»„ä¸­iä¸ªæœ€å°å…ƒç´ \
-		\nç»ˆæ­¢æ—¶i=n,å­æ•°ç»„A[0...i-1]å°±æ˜¯æŒ‰ä»å°åˆ°å¤§é¡ºåºçš„åŸæ•°ç»„A[0...n-1]";
-	string prove_d = "d.ä¸Šç•Œå’Œä¸‹ç•Œéƒ½ä¸ºT(n)=Î˜(n^2),å’Œæ’å…¥æ’åºä¸€æ ·";
+	string prove_a = "a.ÎÒÃÇĞèÒªÖ¤Ã÷ A¡ä ÊÇ A µÄÒ»¸öÅÅÁĞ";//½è¼ø£¬×¢ÒâÔªËØÆğÊ¼×ø±êÊÇ0£¬½á¹¹²¢²»ÍêÕû
+	string prove_b = "b.Ñ­»·²»±äÊ½£ºA[j-1]ÊÇA[i...n-1]¸öÔªËØµÄ×îĞ¡ÔªËØ£¬±£³Ö:Ã¿´Î½»»»¶¼½«ÒÑ±È½ÏµÄ×îĞ¡ÔªËØÇ°ÒÆ";
+	string prove_c = "c.ÆğÊ¼Ê±A[0...i-1]µÄÔªËØÎª¿Õ£¬Ñ­»·²»±äÊ½ÏÔÈ»³ÉÁ¢£¬\
+		\n±£³Ö£ºµÚ2µ½4ĞĞforÑ­»·Ã¿´Îµü´úÇ°£¬×ÓÊı×éA[0...i-1]°´´ÓĞ¡µ½´óµÄË³Ğò°üº¬Ô­Êı×éÖĞi¸ö×îĞ¡ÔªËØ\
+		\nÖÕÖ¹Ê±i=n,×ÓÊı×éA[0...i-1]¾ÍÊÇ°´´ÓĞ¡µ½´óË³ĞòµÄÔ­Êı×éA[0...n-1]";
+	string prove_d = "d.ÉÏ½çºÍÏÂ½ç¶¼ÎªT(n)=¦¨(n^2),ºÍ²åÈëÅÅĞòÒ»Ñù";
 };
 
 class solution2_3 {
@@ -279,13 +279,13 @@ public:
 		cout << prove_d << endl;
 	}
 private:
-	string prove_a = "a.Î˜(n^2)";
+	string prove_a = "a.¦¨(n^2)";
 	string prove_b = "b. y=0\
 		\n	for i=0 to n\
 		\n		y+=a(i)*pow(x,i)\
-		\nT(n)=Î˜(n^2),æ€§èƒ½ä¸å¦‚éœçº³è§„åˆ™";
-	string prove_c = "c.ç»ˆæ­¢æ—¶i=-1å¸¦å…¥å…¬å¼å¯å¾—";//ç»“æ„å¹¶ä¸å®Œæ•´
-	string prove_d = "d. cå·²ç»è¯æ˜å‡ºæ¥äº†ï¼";
+		\nT(n)=¦¨(n^2),ĞÔÄÜ²»Èç»ôÄÉ¹æÔò";
+	string prove_c = "c.ÖÕÖ¹Ê±i=-1´øÈë¹«Ê½¿ÉµÃ";//½á¹¹²¢²»ÍêÕû
+	string prove_d = "d. cÒÑ¾­Ö¤Ã÷³öÀ´ÁË£¡";
 };
 
 class solution2_4 {
@@ -303,9 +303,9 @@ private:
 	void merge(vector<int>&vect, size_t beg, size_t mid, size_t end,size_t &count);
 	void merge_inversion(vector<int>&vect, size_t beg, size_t end,size_t &count);
 	string prove_a = "a. 0 4,1 4,2 3,2 4,3 4";
-	string prove_b = "b. é›†åˆæŒ‰é™åºæ’åˆ—å…·æœ‰æœ€å¤šçš„é€†åºå¯¹n*(n-1)/2å¯¹";
-	string prove_c = "c. æˆæ­£æ¯”,æ’å…¥æ’åºçš„å¤–å±‚å¾ªç¯iæ ‡è®°çš„æ˜¯é€†åºå¯¹ä¸­jï¼Œå†…å­˜å¾ªç¯jä¸ºæŸ¥æ‰¾é€†åºå¯¹jå¯¹åº”çš„é€†åºå¯¹i\
-	\nè€Œç§»åŠ¨å¯¹åº”çš„é€†åºå¯¹ä¸ªæ•°çš„ä½æ•°";
+	string prove_b = "b. ¼¯ºÏ°´½µĞòÅÅÁĞ¾ßÓĞ×î¶àµÄÄæĞò¶Ôn*(n-1)/2¶Ô";
+	string prove_c = "c. ³ÉÕı±È,²åÈëÅÅĞòµÄÍâ²ãÑ­»·i±ê¼ÇµÄÊÇÄæĞò¶ÔÖĞj£¬ÄÚ´æÑ­»·jÎª²éÕÒÄæĞò¶Ôj¶ÔÓ¦µÄÄæĞò¶Ôi\
+	\n¶øÒÆ¶¯¶ÔÓ¦µÄÄæĞò¶Ô¸öÊıµÄÎ»Êı";
 };
 void solution2_4::merge(vector<int>&vect, size_t beg, size_t mid, size_t end,size_t &count) {
 	vector<int>lvec(&vect[beg], &vect[mid + 1]);
@@ -314,8 +314,8 @@ void solution2_4::merge(vector<int>&vect, size_t beg, size_t mid, size_t end,siz
 	rvec.push_back(INT_MAX);
 	size_t n1 = mid - beg + 1;
 	size_t n2 = end - mid;
-	for (size_t n = beg, i = 0, j = 0; n <= end; ++n)//å› ä¸ºlvecå’Œrvecéƒ½å·²æ’åºï¼Œè‹¥lvec[i]>rvec[j],åˆ™ä¸rvec[j]å¯¹åº”çš„
-		vect[n] = lvec[i] < rvec[j] ?lvec[i++]:( count+=n1-i ,rvec[j++]);//é€†åºå¯¹ä¸€å…±æœ‰n1-iä¸ª
+	for (size_t n = beg, i = 0, j = 0; n <= end; ++n)//ÒòÎªlvecºÍrvec¶¼ÒÑÅÅĞò£¬Èôlvec[i]>rvec[j],ÔòÓërvec[j]¶ÔÓ¦µÄ
+		vect[n] = lvec[i] < rvec[j] ?lvec[i++]:( count+=n1-i ,rvec[j++]);//ÄæĞò¶ÔÒ»¹²ÓĞn1-i¸ö
 }
 void solution2_4::merge_inversion(vector<int>&vect, size_t beg, size_t end, size_t &count) {
 	if (beg < end) {

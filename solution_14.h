@@ -499,12 +499,16 @@ public:
 			else {
 				insert(rt->left, target);
 				get_max(rt);
+				if(rt->max<target->max)
+					rt->max=tar->max;
 			}
 		}
 		else {
 			if(rt->right==nil){
 				rt->right = target;
 				target->p = rt;
+				if(rt->max<target->max)
+					rt->max=tar->max;
 			}
 			else {
 				insert(rt->right, target);

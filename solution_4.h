@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #ifndef _SOLUTION_4_H_
 #define _SOLUTION_4_H_
 #include<iostream>
@@ -10,15 +10,15 @@ using namespace std;
 class solution4_1_1 {
 public:
 	void operator()() {
-		cout << "è¿”å›æ•°ç»„ä¸­æœ€å¤§çš„ä¸€ä¸ªå…ƒç´ " << endl;
+		cout << "·µ»ØÊı×éÖĞ×î´óµÄÒ»¸öÔªËØ" << endl;
 	}
 };
 
 struct maxSubarray {
 	maxSubarray(size_t low = 0, size_t high = 0,int max=INT_MAX) :low(low), high(high), maxSum(max) {}
-	size_t low;//å­˜å‚¨æœ€å¤§å­æ•°ç»„å¼€å§‹çš„ä¸‹æ ‡
-	size_t high;//å­˜å‚¨æœ€å¤§å­æ•°ç»„ç»“æŸçš„ä¸‹æ ‡
-	int maxSum;//å­˜å‚¨æœ€å¤§å­æ•°ç»„çš„å’Œ
+	size_t low;//´æ´¢×î´ó×ÓÊı×é¿ªÊ¼µÄÏÂ±ê
+	size_t high;//´æ´¢×î´ó×ÓÊı×é½áÊøµÄÏÂ±ê
+	int maxSum;//´æ´¢×î´ó×ÓÊı×éµÄºÍ
 	bool operator>(const maxSubarray&rhs) {
 		return maxSum > rhs.maxSum;
 	}
@@ -27,10 +27,10 @@ struct maxSubarray {
 class solution4_1_2 {
 public:
 	 maxSubarray operator()(vector<int>&vect) {
-		 int tempMaxSum = INT_MIN;//ä¸´æ—¶å­˜å‚¨æ¯ä¸€ä¸ªæœ€å¤§å­æ•°ç»„çš„å’Œ
-		 int high = 0;//ä¸´æ—¶å­˜å‚¨æœ€å¤§å­æ•°ç»„ç»“æŸä¸‹æ ‡
-		 for (auto beg = vect.begin(); beg != vect.end(); ++beg) {//ç©·ä¸¾æ¯ä¸€ä¸ªä»¥*begå¼€å¤´çš„å­æ•°ç»„
-			 int tempSum = 0;//å­˜å‚¨ä»¥*begå¼€å¤´ä»¥*iterç»“å°¾çš„å’Œ
+		 int tempMaxSum = INT_MIN;//ÁÙÊ±´æ´¢Ã¿Ò»¸ö×î´ó×ÓÊı×éµÄºÍ
+		 int high = 0;//ÁÙÊ±´æ´¢×î´ó×ÓÊı×é½áÊøÏÂ±ê
+		 for (auto beg = vect.begin(); beg != vect.end(); ++beg) {//Çî¾ÙÃ¿Ò»¸öÒÔ*beg¿ªÍ·µÄ×ÓÊı×é
+			 int tempSum = 0;//´æ´¢ÒÔ*beg¿ªÍ·ÒÔ*iter½áÎ²µÄºÍ
 			 for (auto iter = beg; iter != vect.end(); ++iter) {
 				 tempSum += *iter;
 				 if (tempSum > tempMaxSum) {
@@ -38,7 +38,7 @@ public:
 					 tempMaxSum = tempSum;
 				 }
 			 }
-			 if (tempMaxSum > result.maxSum) {//æ›´æ–°æœ€å¤§å­æ•°ç»„
+			 if (tempMaxSum > result.maxSum) {//¸üĞÂ×î´ó×ÓÊı×é
 				 result.maxSum = tempMaxSum;
 				 result.low = beg - vect.begin();
 				 result.high = high;
@@ -47,32 +47,32 @@ public:
 		 return result;
 	}
 private:
-	maxSubarray result;//å­˜å‚¨ç»“æœ
+	maxSubarray result;//´æ´¢½á¹û
 };
 
 class solution4_1_3 {
 public:
-	maxSubarray operator()(vector<int>&vect) {//è¿”å›çš„ç»“æ„ä½“å®šä¹‰åœ¨ä¸Šé¢
-		cout << "n0=lgnæ—¶æ˜¯æ€§èƒ½äº¤å·®ç‚¹,ä¿®æ”¹åæ€§èƒ½äº¤å·®ç‚¹ä¸ä¼šæ”¹å˜" << endl;
+	maxSubarray operator()(vector<int>&vect) {//·µ»ØµÄ½á¹¹Ìå¶¨ÒåÔÚÉÏÃæ
+		cout << "n0=lgnÊ±ÊÇĞÔÄÜ½»²îµã,ĞŞ¸ÄºóĞÔÄÜ½»²îµã²»»á¸Ä±ä" << endl;
 		return divideMaxSubarray(vect, 0, vect.size() - 1);
 	}
 private:
-	maxSubarray maxCrossArray(vector<int>&vect, size_t beg, size_t mid, size_t end) {//åˆ†æ²»æ³•æ±‚æœ€å¤§å­åºåˆ—å’Œ
-		int leftMaxSum = INT_MIN;//å­˜å‚¨å·¦è¾¹æœ€é«˜ä¸‹æ ‡æ˜¯midçš„æœ€å¤§å’Œ
-		int rightMaxSum = INT_MIN;//å­˜å‚¨å³è¾¹æœ€ä½ä¸‹æ ‡æ˜¯midçš„æœ€å¤§å’Œ
+	maxSubarray maxCrossArray(vector<int>&vect, size_t beg, size_t mid, size_t end) {//·ÖÖÎ·¨Çó×î´ó×ÓĞòÁĞºÍ
+		int leftMaxSum = INT_MIN;//´æ´¢×ó±ß×î¸ßÏÂ±êÊÇmidµÄ×î´óºÍ
+		int rightMaxSum = INT_MIN;//´æ´¢ÓÒ±ß×îµÍÏÂ±êÊÇmidµÄ×î´óºÍ
 		int leftSum = 0;
 		int rightSum = 0;
 		size_t low=0;
 		size_t high=0;
 		for (auto i = mid; i != beg-1; --i) {
-			leftSum += vect[i];//vect[i...mid]çš„å’Œ
+			leftSum += vect[i];//vect[i...mid]µÄºÍ
 			if (leftSum > leftMaxSum) {
 				leftMaxSum = leftSum;
 				low = i;
 			}
 		}
 		for (auto i = mid+1; i <= end; ++i) {
-			rightSum += vect[i];//vect[mid+1...i]çš„å’Œ
+			rightSum += vect[i];//vect[mid+1...i]µÄºÍ
 			if (rightSum > rightMaxSum) {
 				rightMaxSum = rightSum;
 				high = i;
@@ -83,17 +83,17 @@ private:
 	maxSubarray divideMaxSubarray(vector<int>&vect, size_t low, size_t high) {
 		if (low == high)
 			return maxSubarray(low, high, vect[low]);
-		else {//æ”¹è¿›é€’å½’åˆ†æ²»ç®—æ³•
-			if (high - low + 1 >= log(vect.size()) / log(2)) {//å½“è§„æ¨¡å¤§äºlgnæ—¶ç”¨åˆ†æ²»ç®—æ³•
+		else {//¸Ä½øµİ¹é·ÖÖÎËã·¨
+			if (high - low + 1 >= log(vect.size()) / log(2)) {//µ±¹æÄ£´óÓÚlgnÊ±ÓÃ·ÖÖÎËã·¨
 				size_t mid = (low + high) / 2;
-			//é€’å½’å°†é—®é¢˜åˆ†ä¸ºmax(maxâˆ‘vect[low,mid],maxâˆ‘vect[mid+1...high],maxâˆ‘vect[low...mid...high])
+			//µİ¹é½«ÎÊÌâ·ÖÎªmax(max¡Ævect[low,mid],max¡Ævect[mid+1...high],max¡Ævect[low...mid...high])
 				maxSubarray leftSum(divideMaxSubarray(vect, low, mid));
 				maxSubarray rightSum(divideMaxSubarray(vect, mid + 1, high));
 				maxSubarray crossMidSum(maxCrossArray(vect, low, mid, high));
 				auto tempMax = leftSum > rightSum ? leftSum : rightSum;
-				return tempMax > crossMidSum ? tempMax : crossMidSum;//è¿”å›ä¸‰è€…æœ€å¤§çš„ä¸€ä¸ª
+				return tempMax > crossMidSum ? tempMax : crossMidSum;//·µ»ØÈıÕß×î´óµÄÒ»¸ö
 			}
-			else {//ç©·ä¸¾ç®—æ³•
+			else {//Çî¾ÙËã·¨
 				int maxSum = INT_MIN;
 				int maxSubSum = INT_MIN;
 				int beg = 0;
@@ -121,14 +121,14 @@ private:
 class solution4_1_4{
 public:
 	void operator()() {
-		cout << "å°†åŸæ¥çš„è¿”å›å€¼ä¸0æ¯”è¾ƒåè¿”å›åŸå€¼æˆ–0" << endl;
+		cout << "½«Ô­À´µÄ·µ»ØÖµÓë0±È½Ïºó·µ»ØÔ­Öµ»ò0" << endl;
 	}
 };
 
 class solution4_1_5 {
 public:
 	maxSubarray operator()(vector<int>&vect){
-		prove();//æ‰“å°è¯æ˜
+		prove();//´òÓ¡Ö¤Ã÷
 		int maxSubSum = INT_MIN;
 		int tempSum = 0;
 		int low = 0;
@@ -153,14 +153,14 @@ public:
 	}
 private:
 	void prove() {
-		cout << "tempSum=âˆ‘vect[i...j]>0,maxSubSum=âˆ‘vect[i...k],k<=j;æœ€å¼€å§‹i=0	\n"
-			<< "maxSubSumä¸ºä»¥v[i]å¼€å¤´çš„vect[i...k]çš„ä¸­æœ€å¤§å­åºåˆ—å’Œ,å‰ææ˜¯tempSum>0,\n"
-			<< "ä¸€æ—¦tempSum<0,ä¹Ÿå°±æ˜¯tempSum=âˆ‘vect[i...j+1]<0,tempSumå°†ç½®é›¶ï¼Œå°†iç½®ä¸ºj+2é‡æ–°ä¸Šè¿°æ­¥éª¤\n"
-			<< "åŸå…ˆvect[i...j+1]å°†ä¸ä¼šå¹¶å…¥åç»­çš„å¯èƒ½æœ€å¤§å­åºåˆ—è®¡ç®—æ­¥éª¤ï¼ŒmaxSubSumçš„å€¼è¢«ä¿å­˜ç”¨äºä¸‹æ¬¡çš„æ¯”è¾ƒ\n"
-			<< "è¯æ˜å¦‚ä¸‹:\n"
-			<< "å‡è®¾å½“tempSum=âˆ‘vect[i...j+1]<0æ—¶è¿˜æœ‰å¹¶å…¥ä¸‹æ¬¡å­åºåˆ—çš„ä»·å€¼ï¼Œåˆ™[i...j+1]ä¸­å¿…å­˜åœ¨x,ä½¿å¾—:\n"
-			<< "âˆ‘vect[x,j+1]>0;è€ŒtempSum=âˆ‘vect[i...x-1]+âˆ‘vect[x...j+1]<0;è‹¥âˆ‘vect[x,j+1]>0ï¼Œå¿…æœ‰ï¼š\n"
-			<< "âˆ‘vect[i...x-1]<0;è¿™ä¸å‰æå‡è®¾j+1æ˜¯ç¬¬ä¸€ä¸ªä»¤âˆ‘vect[i...j+1]=0çš„æ¡ä»¶ä¸ç¬¦ï¼Œæ•…å‡è®¾ä¸æˆç«‹ã€‚"
+		cout << "tempSum=¡Ævect[i...j]>0,maxSubSum=¡Ævect[i...k],k<=j;×î¿ªÊ¼i=0	\n"
+			<< "maxSubSumÎªÒÔv[i]¿ªÍ·µÄvect[i...k]µÄÖĞ×î´ó×ÓĞòÁĞºÍ,Ç°ÌáÊÇtempSum>0,\n"
+			<< "Ò»µ©tempSum<0,Ò²¾ÍÊÇtempSum=¡Ævect[i...j+1]<0,tempSum½«ÖÃÁã£¬½«iÖÃÎªj+2ÖØĞÂÉÏÊö²½Öè\n"
+			<< "Ô­ÏÈvect[i...j+1]½«²»»á²¢ÈëºóĞøµÄ¿ÉÄÜ×î´ó×ÓĞòÁĞ¼ÆËã²½Öè£¬maxSubSumµÄÖµ±»±£´æÓÃÓÚÏÂ´ÎµÄ±È½Ï\n"
+			<< "Ö¤Ã÷ÈçÏÂ:\n"
+			<< "¼ÙÉèµ±tempSum=¡Ævect[i...j+1]<0Ê±»¹ÓĞ²¢ÈëÏÂ´Î×ÓĞòÁĞµÄ¼ÛÖµ£¬Ôò[i...j+1]ÖĞ±Ø´æÔÚx,Ê¹µÃ:\n"
+			<< "¡Ævect[x,j+1]>0;¶øtempSum=¡Ævect[i...x-1]+¡Ævect[x...j+1]<0;Èô¡Ævect[x,j+1]>0£¬±ØÓĞ£º\n"
+			<< "¡Ævect[i...x-1]<0;ÕâÓëÇ°Ìá¼ÙÉèj+1ÊÇµÚÒ»¸öÁî¡Ævect[i...j+1]=0µÄÌõ¼ş²»·û£¬¹Ê¼ÙÉè²»³ÉÁ¢¡£"
 			<< endl;
 	}
 };
@@ -173,13 +173,13 @@ public:
 			<< "c11=48-10-8-20=18,c12=14,c21=62,c22=36"
 			<< endl;
 	}
-	//ä»»æ„m*n çŸ©é˜µå’Œ n*x çŸ©é˜µçš„ä¹˜æ³•è¿ç®—ä¸€èˆ¬ç®—æ³•å®ç°ï¼Œæ— checking
+	//ÈÎÒâm*n ¾ØÕóºÍ n*x ¾ØÕóµÄ³Ë·¨ÔËËãÒ»°ãËã·¨ÊµÏÖ£¬ÎŞchecking
 	shared_ptr<vector<vector<int>>> matrix_multiply(vector<vector<int>>&lhs, vector<vector<int>>&rhs) {
 		shared_ptr < vector<vector<int>> >ptr(new vector<vector<int>>);
-		for(auto i=0;i!=lhs.size();++i)//è®¡ç®—ç¬¬iè¡Œ
-			for (auto j = 0; j != rhs[0].size(); ++j) {//è®¡ç®—ç¬¬jåˆ—
-				int tempMult = 0;//å­˜å‚¨result(i,j)
-				for (auto k = 0; k != rhs.size(); ++k) //è®¡ç®—result(i,j)
+		for(auto i=0;i!=lhs.size();++i)//¼ÆËãµÚiĞĞ
+			for (auto j = 0; j != rhs[0].size(); ++j) {//¼ÆËãµÚjÁĞ
+				int tempMult = 0;//´æ´¢result(i,j)
+				for (auto k = 0; k != rhs.size(); ++k) //¼ÆËãresult(i,j)
 					tempMult += lhs[i][k] * rhs[k][j];
 				j == 0 ? (*ptr).push_back(vector<int>{tempMult}) : (*ptr)[i].push_back(tempMult);
 			}
@@ -190,9 +190,9 @@ public:
 class solution4_3_1 {
 public:
 	void operator()() {
-		cout << "è¦è¯æ˜T(n)<=cn^2;\n"
-			<< "1.å‡è®¾T(n-1)<=c(n-1)^2æˆç«‹	\n"
-			<< "T(n)<=c(n-1)^2+n=cn^2-cn<=cn^2,å½“c>=1æ—¶æˆç«‹"
+		cout << "ÒªÖ¤Ã÷T(n)<=cn^2;\n"
+			<< "1.¼ÙÉèT(n-1)<=c(n-1)^2³ÉÁ¢	\n"
+			<< "T(n)<=c(n-1)^2+n=cn^2-cn<=cn^2,µ±c>=1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -200,8 +200,8 @@ public:
 class solution4_3_2 {
 public:
 	void operator()() {
-		cout << "è¦è¯æ˜T(n)<=clgn	\n"
-			<< "T(n)<=clgâ”n/2â”‘+1==clgn-clg2+1=clgn-c<=clgn ,c>=1æ—¶æˆç«‹"
+		cout << "ÒªÖ¤Ã÷T(n)<=clgn	\n"
+			<< "T(n)<=clg©±n/2©µ+1==clgn-clg2+1=clgn-c<=clgn ,c>=1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -209,8 +209,8 @@ public:
 class solution4_3_3 {
 public:
 	void operator()() {
-		cout << "è¦è¯æ˜T(n)>=cnlgn;	\n"
-			<< "T(n)>=2(c*n/2*lg(n/2)+d)+n=cnlgn-cn+n>=cnlgn,å½“c=1æˆç«‹"
+		cout << "ÒªÖ¤Ã÷T(n)>=cnlgn;	\n"
+			<< "T(n)>=2(c*n/2*lg(n/2)+d)+n=cnlgn-cn+n>=cnlgn,µ±c=1³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -218,14 +218,14 @@ public:
 class solution4_3_4 {
 public:
 	void operator()() {
-		cout << "ä¸‹ä¸€é¢˜å’Œè¿™é¢˜éƒ½å¯ä»¥ç”¨è¿™ä¸€é¢˜çš„ä¹¦ä¸Šè¯æ˜" << endl;
+		cout << "ÏÂÒ»ÌâºÍÕâÌâ¶¼¿ÉÒÔÓÃÕâÒ»ÌâµÄÊéÉÏÖ¤Ã÷" << endl;
 	}
 };
 
 class solution4_3_6 {
 public:
 	void operator()() {
-		cout << "è¦è¯æ˜T(n)<=cnlgn	\n"
+		cout << "ÒªÖ¤Ã÷T(n)<=cnlgn	\n"
 			<< "T(n)<=2(c*(n/2)*lg(n/2)+17)+n=cnlgn-cn+34=cnlgn-cn<=cnlgn"
 			<< endl;
 	}
@@ -234,11 +234,11 @@ public:
 class solution4_3_7 {
 public:
 	void operator()() {
-		cout << "è¦è¯æ˜T(n)<=cn^log(3,4)	\n"
-			<< "T(n)<=4*c(n/3)^log(3,4)+n=cn^log(3,4)+n,å¹¶ä¸èƒ½ç›´æ¥è¯æ˜T(n)<=cn^log(3,4)	\n"
-			<< "ä½†å¯ä»¥è¯æ˜ T(n)=Î©(cn^log(3,4))	\n"
-			<< "è¦è¯æ˜T(n)<=cn^log(3,4)-6n	\n"
-			<< "T(n)<=4*(c*(n/3)^log(3,4)-6*n/3)+n=cn^log(3,4)-7*n<=cn^log(3,4)-6n,c>=1æ—¶æˆç«‹"
+		cout << "ÒªÖ¤Ã÷T(n)<=cn^log(3,4)	\n"
+			<< "T(n)<=4*c(n/3)^log(3,4)+n=cn^log(3,4)+n,²¢²»ÄÜÖ±½ÓÖ¤Ã÷T(n)<=cn^log(3,4)	\n"
+			<< "µ«¿ÉÒÔÖ¤Ã÷ T(n)=¦¸(cn^log(3,4))	\n"
+			<< "ÒªÖ¤Ã÷T(n)<=cn^log(3,4)-6n	\n"
+			<< "T(n)<=4*(c*(n/3)^log(3,4)-6*n/3)+n=cn^log(3,4)-7*n<=cn^log(3,4)-6n,c>=1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -246,11 +246,11 @@ public:
 class solution4_3_8 {
 public:
 	void operator()() {
-		cout << "è¦è¯æ˜T(n)<=cn^2	\n"
-			<< "T(n)<=4*c*(n^2)/4+n=cn^2+n,å¹¶ä¸èƒ½ç›´æ¥è¯æ˜T(n)<=cn^2	\n"
-			<< "ä½†å¯ä»¥è¯æ˜ T(n)=Î©(n^2)	\n"
-			<< "è¦è¯æ˜T(n)<=cn^2-2n	\n"
-			<< "T(n)=4*(c*(n^2)/4-n)+n=cn^2-3n<=cn^2-2n,c>=1æ—¶æˆç«‹"
+		cout << "ÒªÖ¤Ã÷T(n)<=cn^2	\n"
+			<< "T(n)<=4*c*(n^2)/4+n=cn^2+n,²¢²»ÄÜÖ±½ÓÖ¤Ã÷T(n)<=cn^2	\n"
+			<< "µ«¿ÉÒÔÖ¤Ã÷ T(n)=¦¸(n^2)	\n"
+			<< "ÒªÖ¤Ã÷T(n)<=cn^2-2n	\n"
+			<< "T(n)=4*(c*(n^2)/4-n)+n=cn^2-3n<=cn^2-2n,c>=1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -258,8 +258,8 @@ public:
 class solution4_3_9 {
 public:
 	void operator()() {
-		cout << "ä»¤n=2^m,T(n)=3T(n/2)+n,T(2^m)=3T(2^(m/2))+m;	\n"
-			<< "S(m)=3T(m/2)+m;	S(m)=Î˜(m^(lg3)),ä¸è¯æ˜ï¼Œå¯ç”¨é€’å½’æ ‘å¾—åˆ°ï¼Œåé¢å¯ä»¥ä¾é ä¸»æ–¹æ³•å¾—åˆ°	\n"
+		cout << "Áîn=2^m,T(n)=3T(n/2)+n,T(2^m)=3T(2^(m/2))+m;	\n"
+			<< "S(m)=3T(m/2)+m;	S(m)=¦¨(m^(lg3)),²»Ö¤Ã÷£¬¿ÉÓÃµİ¹éÊ÷µÃµ½£¬ºóÃæ¿ÉÒÔÒÀ¿¿Ö÷·½·¨µÃµ½	\n"
 			<<"T(n)=(lgn)^(lg3)"
 			<< endl;
 	}
@@ -268,8 +268,8 @@ public:
 class solution4_4_1 {
 public:
 	void operator()() {
-		cout << "é€’å½’æ ‘çš„ä¸Šç•Œä¸ºÎ˜(n^lg(3/2)),è¦è¯æ˜T(n)<=cn^lg(3/2)-cn		\n"
-			<< "T(n)<=3*(c(n/2)^lg(3/2)-cn/2)+n=cn^lg(3/2)-cn,c>=1æ—¶æˆç«‹ï¼Œå¾—è¯"
+		cout << "µİ¹éÊ÷µÄÉÏ½çÎª¦¨(n^lg(3/2)),ÒªÖ¤Ã÷T(n)<=cn^lg(3/2)-cn		\n"
+			<< "T(n)<=3*(c(n/2)^lg(3/2)-cn/2)+n=cn^lg(3/2)-cn,c>=1Ê±³ÉÁ¢£¬µÃÖ¤"
 			<< endl;
 	}
 };
@@ -277,8 +277,8 @@ public:
 class solution4_4_2 {
 public:
 	void operator()() {
-		cout << "T(n)=Î˜(n^2),è¦è¯æ˜T(n)<=cn^2	\n"
-			<< "T(n)<=c*n^2/4+n^2<=cn^2,å½“c>=1æ—¶æˆç«‹ï¼Œå¾—è¯"
+		cout << "T(n)=¦¨(n^2),ÒªÖ¤Ã÷T(n)<=cn^2	\n"
+			<< "T(n)<=c*n^2/4+n^2<=cn^2,µ±c>=1Ê±³ÉÁ¢£¬µÃÖ¤"
 			<< endl;
 	}
 };
@@ -286,8 +286,8 @@ public:
 class solution4_4_3 {
 public:
 	void operator()() {
-		cout << "è¦è¯T(n)<=cn^2-dn;d>0ä¸ºå¸¸æ•°	\n"
-			<< "T(n)<=4(c(n/2+2)^2-d(n/2+2))+n=cn^2+(8c-2d+1)n+16c-8d<=cn^2-dn,c>=1,b>=8c+1æ—¶æˆç«‹"
+		cout << "ÒªÖ¤T(n)<=cn^2-dn;d>0Îª³£Êı	\n"
+			<< "T(n)<=4(c(n/2+2)^2-d(n/2+2))+n=cn^2+(8c-2d+1)n+16c-8d<=cn^2-dn,c>=1,b>=8c+1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -295,7 +295,7 @@ class solution4_4_4 {
 public:
 	void operator()() {
 		cout << "T(n)<=cn^2;\n"
-			<< "T(n)<=c(n-1)^2+1=cn^2-cn+c<=cn^2,å½“c>=1æ—¶æˆç«‹"
+			<< "T(n)<=c(n-1)^2+1=cn^2-cn+c<=cn^2,µ±c>=1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -303,18 +303,18 @@ public:
 class solution4_4_5 {
 public:
 	void operator()() {
-		cout << "é€’å½’æ ‘æœ€é•¿çš„ä¸ºn-1å±‚ï¼Œæ­¤æ ‘å¹¶ä¸æ˜¯å®Œå…¨äºŒå‰æ ‘ï¼Œå¹³å‡æ¯å±‚å°äº2^iä¸ªèŠ‚ç‚¹ï¼›\n"
-			<< "T(n)<=c2^(n+1)-2n,T(n)=c*2^n+2*c*2^(n/2)-2n+1<=c2^(n+1)-2n,c>=1æ—¶æˆç«‹"
+		cout << "µİ¹éÊ÷×î³¤µÄÎªn-1²ã£¬´ËÊ÷²¢²»ÊÇÍêÈ«¶ş²æÊ÷£¬Æ½¾ùÃ¿²ãĞ¡ÓÚ2^i¸ö½Úµã£»\n"
+			<< "T(n)<=c2^(n+1)-2n,T(n)=c*2^n+2*c*2^(n/2)-2n+1<=c2^(n+1)-2n,c>=1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
 
 class solution4_4_6 {
 public:
-	void operator()() {//æœ‰å€Ÿé‰´
-		cout << "æ ‘çš„æœ€çŸ­å±‚ä¸ºæœ€å·¦è¾¹çš„é‚£æ¡ï¼Œæœ‰log(3,n)å±‚ï¼Œæ¯ä¸€å±‚èŠ±è´¹cn,å¯ä»¥ç”»åˆ°æœ‰å››ä¸ªèŠ‚ç‚¹çš„é‚£å±‚\n"
-			<< "cn/3^2,2cn/3^2,2cn/3^2,4cn/3^2åŠ èµ·æ¥ä¸ºcnï¼Œå…±èŠ±è´¹cnlog(3,n),äº¦å³cnlgnï¼Œæ•…Î©(cnlgn);"
-			<< "æ³¨:ä¸åŒåº•æ•°çš„å¢é•¿ç‡éƒ½æ˜¯ç›¸åŒçš„ï¼Œlim nâ†’âˆlog(a,n)/lg(b,n)=lim nâ†’âˆ(lgn/lga)*(lgb/lgn)=lga/lgbä¸ºå¸¸æ•°ã€‚"
+	void operator()() {//ÓĞ½è¼ø
+		cout << "Ê÷µÄ×î¶Ì²ãÎª×î×ó±ßµÄÄÇÌõ£¬ÓĞlog(3,n)²ã£¬Ã¿Ò»²ã»¨·Ñcn,¿ÉÒÔ»­µ½ÓĞËÄ¸ö½ÚµãµÄÄÇ²ã\n"
+			<< "cn/3^2,2cn/3^2,2cn/3^2,4cn/3^2¼ÓÆğÀ´Îªcn£¬¹²»¨·Ñcnlog(3,n),Òà¼´cnlgn£¬¹Ê¦¸(cnlgn);"
+			<< "×¢:²»Í¬µ×ÊıµÄÔö³¤ÂÊ¶¼ÊÇÏàÍ¬µÄ£¬lim n¡ú¡Şlog(a,n)/lg(b,n)=lim n¡ú¡Ş(lgn/lga)*(lgb/lgn)=lga/lgbÎª³£Êı¡£"
 			<< endl;
 	}
 };
@@ -322,10 +322,10 @@ public:
 class solution4_4_7 {
 public:
 	void operator()() {
-		cout << "T(n)=Î˜(n^2);\n"
-			<< "è¦è¯æ˜T(n)>=cn^2;T(n)>=4*c(n^2/4)+cn=cn^2+cn>cn^2,n>=1æ—¶æˆç«‹ï¼ŒT(n)=Î©(n^2)\n"
-			<< "è¦è¯æ˜T(n)<=cn^2-cn-n;T(n)<=4*(c(n^2/4)-cn/2-n/2)+cn=cn^2-cn-2n<=cn^2-cn-n,c>=1æ—¶æˆç«‹	\n"
-			<< "T(n)=O(n^2),ç»¼ä¸Šï¼ŒT(n)=Î˜(n^2)"
+		cout << "T(n)=¦¨(n^2);\n"
+			<< "ÒªÖ¤Ã÷T(n)>=cn^2;T(n)>=4*c(n^2/4)+cn=cn^2+cn>cn^2,n>=1Ê±³ÉÁ¢£¬T(n)=¦¸(n^2)\n"
+			<< "ÒªÖ¤Ã÷T(n)<=cn^2-cn-n;T(n)<=4*(c(n^2/4)-cn/2-n/2)+cn=cn^2-cn-2n<=cn^2-cn-n,c>=1Ê±³ÉÁ¢	\n"
+			<< "T(n)=O(n^2),×ÛÉÏ£¬T(n)=¦¨(n^2)"
 			<< endl;
 	}
 };
@@ -333,9 +333,9 @@ public:
 class solution4_4_8 {
 public:
 	void operator()() {
-		cout << "T(n)=Î˜(n^2),å…ˆè¯æ˜T(n)=O(n^2),è¦è¯æ˜T(n)>=cn^2;	\n"
-			<< "T(n)<=c*(n-a)^2+ca^2+cn=cn^2-2acn+2ca^2+cn=cn^2-cn(2a-1)+2ca^2<=cn^2,c>=1,n>2a^2/(2a-1)æ—¶æˆç«‹	\n"
-			<< "T(n)=Î©(n^2)æ€ä¹ˆç”¨ä»£å…¥æ³•æ²¡æƒ³å‡ºæ¥ï¼Œé¢˜ç›®ä¹Ÿå¹¶æ²¡æœ‰è¦æ±‚,ç»¼ä¸Šï¼ŒT(n)=Î˜(n^2);"
+		cout << "T(n)=¦¨(n^2),ÏÈÖ¤Ã÷T(n)=O(n^2),ÒªÖ¤Ã÷T(n)>=cn^2;	\n"
+			<< "T(n)<=c*(n-a)^2+ca^2+cn=cn^2-2acn+2ca^2+cn=cn^2-cn(2a-1)+2ca^2<=cn^2,c>=1,n>2a^2/(2a-1)Ê±³ÉÁ¢	\n"
+			<< "T(n)=¦¸(n^2)ÔõÃ´ÓÃ´úÈë·¨Ã»Ïë³öÀ´£¬ÌâÄ¿Ò²²¢Ã»ÓĞÒªÇó,×ÛÉÏ£¬T(n)=¦¨(n^2);"
 			<< endl;
 	}
 };
@@ -343,9 +343,9 @@ public:
 class solution4_4_9 {
 public:
 	void operator()() {
-		cout << "å‡è®¾0<a<1/2,é€’å½’æ ‘ç”»å‡ºæ¥åªä¸€å…±æœ‰log(1/a,n)å±‚ï¼Œæ¯å±‚è€—è´¹cnï¼Œæ€»è€—è´¹cnlgn(1/a,n)=clgn,(4_4_6 æœ‰è¯´æ˜)	\n"
-			<< "è¦è¯æ˜T(n)>=cnlgn,T(n)<=c*a*n*lg(a*n)+cn(1-a)lg(n(1-a))+cn=cnlgn+cn>=cnlgn,c>=1æ—¶æˆç«‹	\n"
-			<< "è¦è¯æ˜T(n)<=cnlgn+cn;T(n)>=c*a*n*lg(a*n)+cn(1-a)lg(n(1-a))+cn+cna+c(1-a)n=cnlgn+cn,c>=1æ—¶æˆç«‹"
+		cout << "¼ÙÉè0<a<1/2,µİ¹éÊ÷»­³öÀ´Ö»Ò»¹²ÓĞlog(1/a,n)²ã£¬Ã¿²ãºÄ·Ñcn£¬×ÜºÄ·Ñcnlgn(1/a,n)=clgn,(4_4_6 ÓĞËµÃ÷)	\n"
+			<< "ÒªÖ¤Ã÷T(n)>=cnlgn,T(n)<=c*a*n*lg(a*n)+cn(1-a)lg(n(1-a))+cn=cnlgn+cn>=cnlgn,c>=1Ê±³ÉÁ¢	\n"
+			<< "ÒªÖ¤Ã÷T(n)<=cnlgn+cn;T(n)>=c*a*n*lg(a*n)+cn(1-a)lg(n(1-a))+cn+cna+c(1-a)n=cnlgn+cn,c>=1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -353,10 +353,10 @@ public:
 class solution4_5_1 {
 public:
 	void operator()() {
-		cout << "a.a=2,b=4,f(n)=1,n^(log(4,2))=n^(1/2),f(n)=O(n^(1/2-Îµ))ï¼ŒÎµ=1/2ï¼ŒT(n)=Î˜(n^(1/2))	\n"
-			<< "b.a=2,b=4,f(n)=n^(1/2),f(n)=Î˜(n^1/2),T(n)=n^(1/2)	lgn	\n"
-			<< "c.a=2,b=4,f(n)=n,f(n)=Î©(n^(1/2+Îµ))ï¼ŒÎµ=1/2ï¼Œå¯¹äºc=1/2,af(n/b)=2*n/4=n/2<=cf(n),T(n)=Î˜(n)	\n"
-			<< "a=2,b=4,f(n)=n^2,f(n)=Î©(n^(1/2+Îµ)),Îµ=3/2,å¯¹äºc=1/8ï¼Œaf(n/b)=2*(n/4)^2=n^2/8=cf(n),T(n)=Î˜(n^2)	\n"
+		cout << "a.a=2,b=4,f(n)=1,n^(log(4,2))=n^(1/2),f(n)=O(n^(1/2-¦Å))£¬¦Å=1/2£¬T(n)=¦¨(n^(1/2))	\n"
+			<< "b.a=2,b=4,f(n)=n^(1/2),f(n)=¦¨(n^1/2),T(n)=n^(1/2)	lgn	\n"
+			<< "c.a=2,b=4,f(n)=n,f(n)=¦¸(n^(1/2+¦Å))£¬¦Å=1/2£¬¶ÔÓÚc=1/2,af(n/b)=2*n/4=n/2<=cf(n),T(n)=¦¨(n)	\n"
+			<< "a=2,b=4,f(n)=n^2,f(n)=¦¸(n^(1/2+¦Å)),¦Å=3/2,¶ÔÓÚc=1/8£¬af(n/b)=2*(n/4)^2=n^2/8=cf(n),T(n)=¦¨(n^2)	\n"
 			<< endl;
 	}
 };
@@ -364,8 +364,8 @@ public:
 class solution4_5_2 {
 public:
 	void operator()() {
-		cout << "å½“è®¾æƒ³ç®—æ³•æ¥è¿‘Strassenç®—æ³•æ—¶ä¸ºÎ˜(n^lg7),n^lg7=n^(log(4,a)),åº”ç”¨æƒ…å†µ1ï¼Œa=49,"
-			<<"è¦å¿«äºStrassençš„æœ€å¤§æ•´æ•°a=48"
+		cout << "µ±ÉèÏëËã·¨½Ó½üStrassenËã·¨Ê±Îª¦¨(n^lg7),n^lg7=n^(log(4,a)),Ó¦ÓÃÇé¿ö1£¬a=49,"
+			<<"Òª¿ìÓÚStrassenµÄ×î´óÕûÊıa=48"
 			<< endl;
 	}
 };
@@ -373,7 +373,7 @@ public:
 class solution4_5_3 {
 public:
 	void operator()() {
-		cout << "a=1,b=2,f(n)=Î˜(1),n^(log(b,a))=1,f(n)=Î˜(n^(log(b,a)),T(n)=Î˜(lgn)"
+		cout << "a=1,b=2,f(n)=¦¨(1),n^(log(b,a))=1,f(n)=¦¨(n^(log(b,a)),T(n)=¦¨(lgn)"
 			<< endl;
 	}
 };
@@ -381,10 +381,10 @@ public:
 class solution4_5_4 {
 public:
 	void operator()() {
-		cout << "ä¸å¯ä»¥ï¼Œa=4,b=2,f(n)=n^2lgn,n^(b,a)=n^2,çœ‹èµ·æ¥éœ€è¦åº”ç”¨æƒ…å†µ3	\n"
-			<< "ä½†f(n)/n^(b,a)=lgnéƒ½æ¸è¿›å°äºn^Îµ,ä¸æ˜¯å¤šé¡¹å¼æ„ä¹‰ä¸Šçš„å¤§äº	\n"
-			<< "T(n)=Î˜(n^2*(lgn)^2),è¦è¯æ˜T(n)<=cn^2*(lgn)^2		\n"
-			<< "T(n)<=cn^2((lgn)^2-2lgn+1)+n^2*lgn=cn^2*(lgn)^2-2cn^2lgn+cn<=cn^2((lgn)^2-2lgn+1),c>=1æ—¶æˆç«‹"
+		cout << "²»¿ÉÒÔ£¬a=4,b=2,f(n)=n^2lgn,n^(b,a)=n^2,¿´ÆğÀ´ĞèÒªÓ¦ÓÃÇé¿ö3	\n"
+			<< "µ«f(n)/n^(b,a)=lgn¶¼½¥½øĞ¡ÓÚn^¦Å,²»ÊÇ¶àÏîÊ½ÒâÒåÉÏµÄ´óÓÚ	\n"
+			<< "T(n)=¦¨(n^2*(lgn)^2),ÒªÖ¤Ã÷T(n)<=cn^2*(lgn)^2		\n"
+			<< "T(n)<=cn^2((lgn)^2-2lgn+1)+n^2*lgn=cn^2*(lgn)^2-2cn^2lgn+cn<=cn^2((lgn)^2-2lgn+1),c>=1Ê±³ÉÁ¢"
 			<< endl;
 	}
 };
@@ -400,9 +400,9 @@ public:
 class solution4_6_1 {
 public:
 	void operator()() {
-		cout << "n[j]=â”n/b^jâ”‘	\n"
-			<< "ä¹‹æ‰€ä»¥bæ˜¯æ•´æ•°å’Œä»»æ„å®æ•°æœ‰æ‰€ä¸åŒåœ¨äºæ™®é€šè®¡ç®—æœºåªèƒ½ä¿ç•™å°æ•°ä½åä¸€å®šä½æ•°çš„ç²¾ç¡®å€¼ï¼Œ	\n"
-			<< "å‡è®¾aä¸ºè¢«å¿½ç•¥çš„å°æ•°ï¼Œlim nâ†’âˆï¼Œ(1+a)^n/(1^n)=âˆ"
+		cout << "n[j]=©±n/b^j©µ	\n"
+			<< "Ö®ËùÒÔbÊÇÕûÊıºÍÈÎÒâÊµÊıÓĞËù²»Í¬ÔÚÓÚÆÕÍ¨¼ÆËã»úÖ»ÄÜ±£ÁôĞ¡ÊıÎ»ºóÒ»¶¨Î»ÊıµÄ¾«È·Öµ£¬	\n"
+			<< "¼ÙÉèaÎª±»ºöÂÔµÄĞ¡Êı£¬lim n¡ú¡Ş£¬(1+a)^n/(1^n)=¡Ş"
 			<< endl;
 	}
 };
@@ -411,8 +411,8 @@ class solution4_6_2 {
 public:
 	void operator()() {
 		cout << "n=b^m,T(n)=acb^(mlog(b,a))*(lgb)^(k+1)+b^(mlog(b,a))*(lg(b^m))^k	\n"
-			<< "=(a^m)*(m^(k+1))*(ac(lgb)^(k+1)+(lgb)^k/m),å½“nâ†’âˆï¼Œmâ†’âˆï¼Œ(lgb)^k/mâ†’0ï¼Œac(lgb)^(k+1)+(lgb)^k/mä¸ºå¸¸æ•°	\n"
-			<< "T(n)=c(a^m)m^(k+1)=Î˜(n^(log(b,a))*(lgn)^(k+1)"
+			<< "=(a^m)*(m^(k+1))*(ac(lgb)^(k+1)+(lgb)^k/m),µ±n¡ú¡Ş£¬m¡ú¡Ş£¬(lgb)^k/m¡ú0£¬ac(lgb)^(k+1)+(lgb)^k/mÎª³£Êı	\n"
+			<< "T(n)=c(a^m)m^(k+1)=¦¨(n^(log(b,a))*(lgn)^(k+1)"
 			<< endl;
 	}
 };
@@ -420,28 +420,28 @@ public:
 class solution4_6_3 {
 public:
 	void operator()() {
-		cout << "f(n)=Î©(n^(log(b,a)+Îµ),äº¦å³f(n)=n^Î»ï¼ŒÎ»-log(b,a)=Îµï¼Œè¯æ˜å¦‚ä¸‹ï¼š\n"
-			<< "af(n/b)<=cf(n),a(n/b)^Î»<=cn^Î»,Î»>=log(b,a/c),0<c<1,a/c>a,log(b,a/c)>log(b,a),æ•…Î»-log(b,a)=Îµï¼ŒÎµ>0"
+		cout << "f(n)=¦¸(n^(log(b,a)+¦Å),Òà¼´f(n)=n^¦Ë£¬¦Ë-log(b,a)=¦Å£¬Ö¤Ã÷ÈçÏÂ£º\n"
+			<< "af(n/b)<=cf(n),a(n/b)^¦Ë<=cn^¦Ë,¦Ë>=log(b,a/c),0<c<1,a/c>a,log(b,a/c)>log(b,a),¹Ê¦Ë-log(b,a)=¦Å£¬¦Å>0"
 			<< endl;
 	}
 };
 
-//æ€è€ƒé¢˜
+//Ë¼¿¼Ìâ
 class solution4_1 {
 public:
 	void operator()() {
-		cout << "a.T(n)=Î˜(n^4)ï¼Œåº”ç”¨ä¸»å®šç†æ±‚å¾—ï¼Œä¸éªŒè¯ï¼Œä¸‹åŒ	\n"
-			<< "b.T(n)=Î˜(n)	\n"
-			<< "c.T(n)=Î˜(n^2)	\n"
-			<< "d.T(n)=Î˜(n^2)	\n"
-			<< "e.T(n)=Î˜(n^lg7)	\n"
-			<< "f.T(n)=Î˜(n^(1/2)lgn)	\n"
-			<< "g.T(n)=âˆ‘(n-2*i)^2=Î˜(n^3),å…¶ä¸­i=0...n/2 ä½†è¯·çœ‹ä¸‹é¢è¯æ˜ï¼š   \n"
-			<< "T(n)<=cn^2ï¼ŒT(n)<=c(n-2)^2+n^2=(c+1)^2-4cn+4c=cn^2-cn+c<=cn^2     \n"
-			<< "çœ‹èµ·æ¥ä¸æˆ‘çš„ç»“è®ºä¸ç¬¦,é—®é¢˜å‡ºåœ¨(c+1)^2-4cn+4c=cn^2-cn+cè¿™ä¸€æ­¥    \n"
-			<< "å½“ä¸ç­‰å¼å³è¾¹æœ‰ç›¸åŒå¢é•¿é‡çº§çš„æ­¤é¢˜æ˜¯cn^2,ä¸èƒ½è´¸ç„¶å°†å·¦è¾¹çš„ç³»æ•°ç®€åŒ–æˆcï¼Œä¸ç„¶å·¦å³ä¸¤è¾¹çš„cä¸æ˜¯åŒä¸€ä¸ªc\n"
+		cout << "a.T(n)=¦¨(n^4)£¬Ó¦ÓÃÖ÷¶¨ÀíÇóµÃ£¬²»ÑéÖ¤£¬ÏÂÍ¬	\n"
+			<< "b.T(n)=¦¨(n)	\n"
+			<< "c.T(n)=¦¨(n^2)	\n"
+			<< "d.T(n)=¦¨(n^2)	\n"
+			<< "e.T(n)=¦¨(n^lg7)	\n"
+			<< "f.T(n)=¦¨(n^(1/2)lgn)	\n"
+			<< "g.T(n)=¡Æ(n-2*i)^2=¦¨(n^3),ÆäÖĞi=0...n/2 µ«Çë¿´ÏÂÃæÖ¤Ã÷£º   \n"
+			<< "T(n)<=cn^2£¬T(n)<=c(n-2)^2+n^2=(c+1)^2-4cn+4c=cn^2-cn+c<=cn^2     \n"
+			<< "¿´ÆğÀ´ÓëÎÒµÄ½áÂÛ²»·û,ÎÊÌâ³öÔÚ(c+1)^2-4cn+4c=cn^2-cn+cÕâÒ»²½    \n"
+			<< "µ±²»µÈÊ½ÓÒ±ßÓĞÏàÍ¬Ôö³¤Á¿¼¶µÄ´ËÌâÊÇcn^2,²»ÄÜÃ³È»½«×ó±ßµÄÏµÊı¼ò»¯³Éc£¬²»È»×óÓÒÁ½±ßµÄc²»ÊÇÍ¬Ò»¸öc\n"
 			<< "(c+1)^2-4cn+4c=(c+1)^2-cn+c>=cn^2, \n"
-			<< "å› ä¸ºæˆ‘åœ¨è¿™ä¸€é¢˜æ‰å‘ç°è¿™ä¸ªé—®é¢˜ï¼Œæ‰€ä»¥å‰é¢çš„è¯æ˜é¢˜å¯èƒ½æœ‰é”™è¯¯,ä½†æˆ‘æ‡’å¾—æ”¹äº†"
+			<< "ÒòÎªÎÒÔÚÕâÒ»Ìâ²Å·¢ÏÖÕâ¸öÎÊÌâ£¬ËùÒÔÇ°ÃæµÄÖ¤Ã÷Ìâ¿ÉÄÜÓĞ´íÎó,µ«ÎÒÀÁµÃ¸ÄÁË"
 			<< endl;
 	}
 };
@@ -449,35 +449,35 @@ public:
 class solution4_2 {
 public:
 	void operator()() {
-		cout << "a.1.T(n)=T(n/2)+c,T(n)= Î˜(lgn)	\n"
-			<< "2.T(n)=T(n/2)+cN,T(n)=Î˜(nlgn)		\n"
-<< "3.T(n)=T(n/2)+cn/2,T(n)=Î˜(n)		\n"
-<< "b.1.T(n)=2T(n/2)+cnï¼ŒT(n)=Î˜(n)		\n"
-<< "2.T(n)=2T(n/2)+cN,T(n)=Î˜(n^2)		\n"
-<< "3.T(n)=2T(n/2)+cn,T(n)=Î˜(nlgn)		\n"
-<< "bä¸­1ï¼Œ3ç›¸åŒåœ¨äºä¸è®ºå‚æ•°æ€ä¹ˆä¼ é€’ï¼Œæ¯å±‚è¿˜æ˜¯éœ€è¦næ¬¡æ¯”è¾ƒï¼ŒèŠ±è´¹cnï¼Œä¾‹å¦‚1ä¸­å‚æ•°ä¼ é€’ä¸éœ€è¦èµ‹å€¼æ•°ç»„	\n"
-<< "åªéœ€è¦ä¼ é€’ä¸€ä¸ªèµ·å§‹æŒ‡é’ˆï¼Œä½†è¿˜æ˜¯éœ€è¦næ¬¡æ¯”è¾ƒï¼Œæ¯æ¬¡æ¯”è¾ƒèŠ±è´¹cï¼Œcn+cç®€å†™æˆcn"
+		cout << "a.1.T(n)=T(n/2)+c,T(n)= ¦¨(lgn)	\n"
+			<< "2.T(n)=T(n/2)+cN,T(n)=¦¨(nlgn)		\n"
+<< "3.T(n)=T(n/2)+cn/2,T(n)=¦¨(n)		\n"
+<< "b.1.T(n)=2T(n/2)+cn£¬T(n)=¦¨(n)		\n"
+<< "2.T(n)=2T(n/2)+cN,T(n)=¦¨(n^2)		\n"
+<< "3.T(n)=2T(n/2)+cn,T(n)=¦¨(nlgn)		\n"
+<< "bÖĞ1£¬3ÏàÍ¬ÔÚÓÚ²»ÂÛ²ÎÊıÔõÃ´´«µİ£¬Ã¿²ã»¹ÊÇĞèÒªn´Î±È½Ï£¬»¨·Ñcn£¬ÀıÈç1ÖĞ²ÎÊı´«µİ²»ĞèÒª¸³ÖµÊı×é	\n"
+<< "Ö»ĞèÒª´«µİÒ»¸öÆğÊ¼Ö¸Õë£¬µ«»¹ÊÇĞèÒªn´Î±È½Ï£¬Ã¿´Î±È½Ï»¨·Ñc£¬cn+c¼òĞ´³Écn"
 << endl;
 	}
 };
 class solution4_3 {
 public:
 	void operator()() {
-		cout << "a.æ ¹æ®(4.21),T(n)=Î˜(n^log(3,4)+âˆ‘(4/3)^i*(lgn-ilg3),i=0...lg(3,n)-1,ç­‰æ¯”ä¸ç­‰å·®ç§¯çš„å’Œï¼Œç”¨é”™ä½ç›¸å‡æ³•æ±‚å¾—	\n"
-			<< "T(n)=lg(n)*n^log(3,4)"//ä¸ä¿è¯è®¡ç®—ç»“æœå‡†ç¡®æ€§
-			<< "b.T(n)=Î˜(nlglgn)"//å€Ÿé‰´ä¸ä¿è¯æ­£ç¡®ï¼Œä¹Ÿæ²¡å†™è¿‡ç¨‹ï¼Œä¼°è®¡é çŒœåç”¨ä»£å…¥æ³•éªŒè¯çš„ï¼Œä¸‹å†™å€Ÿé‰´åŒæ­¤
-			<< "c.æ ¹æ®(4.21)æ±‚å’Œåå¾—T(n)=n^2+n^(3/2)âˆ‘2^(j/2),T(n)=Î˜(n^2)	\n"
-			<< "d.T(n)=3T(n/3)+n/2,è¿ç”¨ä¸»å®šç†å¾—T(n)=nlg	\n"
-			<< "e.æ ¹æ®(4.21)æ±‚å’Œåå¾—T(n)=n+nâˆ‘(1/(lgn-j),j=0...lgn-1,nâˆ‘(1/(lgn-j)<=nâˆ‘1/lgn=n,T(n)=Î˜(n)		\n"
-			<< "f.T(n)=Î˜(n),T(n)<=cn,T(n)<=c7n/8+n<=cn,c>=8æ—¶æˆç«‹,T(n)>=cn,c<=8æ—¶æˆç«‹	\n"
-			<< "g.T(n)=Î˜(lnn)	\n"
-			<< "h.T(n)=lg(n!)<=lg(n^n)=nlgn,T(n)=O(nlgn)ï¼ŒT(n)<=cnlgn,T(n)<=cnlg(n-1)-clg(n-1)+lgn<=clgn,å½“c=1æ—¶æˆç«‹ï¼Œ	\n"
-			<< "nâ†’âˆï¼Œlgn/lg(n-1)=lgn(n-1,n)=1	\n"
-			<< "i.T(n)=âˆ‘1/lg(2i),i=1...n/2,T(n)=O(n),T(n)=Î©(n/lgn)	\n"
-			<< "j.å¦‚æœç”»å‡ºé€’å½’æ ‘ï¼Œç¬¬iå±‚æœ‰n^(0)*n^(1/2)*n^(1/4)*n^(1/8)*...*n^(1/(2^i)=n^(1-1/(2^i),ç¬¬iå±‚èŠ‚ç‚¹çš„å¤§å°\n"
-			<< "ä¸ºn^(1/(2^i),ç„¶åè®¡ç®—ä¸€å…±æœ‰å¤šå°‘å±‚ï¼Œä»¤n^(1/(2^i)=ä¸€ä¸ªå¸¸æ•°ï¼Œå–2æ¯”è¾ƒåˆé€‚ï¼Œn^(1/(2^i)=2ï¼Œi=lglgn	\n"
-			<< "ä¸€å…±æœ‰lglgnå±‚ï¼ŒT(n)=âˆ‘n^(1-1/(2^i)*n^(1/(2^i)=âˆ‘n=nlglgn,å…¶ä¸­i=0...lglgn,	\n"
-			<< "T(n)=Î˜(nlglgn)"
+		cout << "a.¸ù¾İ(4.21),T(n)=¦¨(n^log(3,4)+¡Æ(4/3)^i*(lgn-ilg3),i=0...lg(3,n)-1,µÈ±ÈÓëµÈ²î»ıµÄºÍ£¬ÓÃ´íÎ»Ïà¼õ·¨ÇóµÃ	\n"
+			<< "T(n)=lg(n)*n^log(3,4)"//²»±£Ö¤¼ÆËã½á¹û×¼È·ĞÔ
+			<< "b.T(n)=¦¨(nlglgn)"//½è¼ø²»±£Ö¤ÕıÈ·£¬Ò²Ã»Ğ´¹ı³Ì£¬¹À¼Æ¿¿²ÂºóÓÃ´úÈë·¨ÑéÖ¤µÄ£¬ÏÂĞ´½è¼øÍ¬´Ë
+			<< "c.¸ù¾İ(4.21)ÇóºÍºóµÃT(n)=n^2+n^(3/2)¡Æ2^(j/2),T(n)=¦¨(n^2)	\n"
+			<< "d.T(n)=3T(n/3)+n/2,ÔËÓÃÖ÷¶¨ÀíµÃT(n)=nlg	\n"
+			<< "e.¸ù¾İ(4.21)ÇóºÍºóµÃT(n)=n+n¡Æ(1/(lgn-j),j=0...lgn-1,n¡Æ(1/(lgn-j)<=n¡Æ1/lgn=n,T(n)=¦¨(n)		\n"
+			<< "f.T(n)=¦¨(n),T(n)<=cn,T(n)<=c7n/8+n<=cn,c>=8Ê±³ÉÁ¢,T(n)>=cn,c<=8Ê±³ÉÁ¢	\n"
+			<< "g.T(n)=¦¨(lnn)	\n"
+			<< "h.T(n)=lg(n!)<=lg(n^n)=nlgn,T(n)=O(nlgn)£¬T(n)<=cnlgn,T(n)<=cnlg(n-1)-clg(n-1)+lgn<=clgn,µ±c=1Ê±³ÉÁ¢£¬	\n"
+			<< "n¡ú¡Ş£¬lgn/lg(n-1)=lgn(n-1,n)=1	\n"
+			<< "i.T(n)=¡Æ1/lg(2i),i=1...n/2,T(n)=O(n),T(n)=¦¸(n/lgn)	\n"
+			<< "j.Èç¹û»­³öµİ¹éÊ÷£¬µÚi²ãÓĞn^(0)*n^(1/2)*n^(1/4)*n^(1/8)*...*n^(1/(2^i)=n^(1-1/(2^i),µÚi²ã½ÚµãµÄ´óĞ¡\n"
+			<< "Îªn^(1/(2^i),È»ºó¼ÆËãÒ»¹²ÓĞ¶àÉÙ²ã£¬Áîn^(1/(2^i)=Ò»¸ö³£Êı£¬È¡2±È½ÏºÏÊÊ£¬n^(1/(2^i)=2£¬i=lglgn	\n"
+			<< "Ò»¹²ÓĞlglgn²ã£¬T(n)=¡Æn^(1-1/(2^i)*n^(1/(2^i)=¡Æn=nlglgn,ÆäÖĞi=0...lglgn,	\n"
+			<< "T(n)=¦¨(nlglgn)"
 			<< endl;
 	}
 };
@@ -485,10 +485,10 @@ public:
 class solution4_4 {
 public:
 	void operator()() {
-		cout << "a.zf(z)+z^2f(z)=âˆ‘z^2+2z^3+3z^4+....ï¼Œæ˜¾ç„¶f(z)=z+zf(z)+z^2f(z)	\n"
-			<< "b.å¯¹aé—®è§£ä¸€å…ƒäºŒæ¬¡æ–¹ç¨‹å¾—F(z)=z/(1-z-z^2),åé¢ä¸¤ä¸ªç­‰å¼å°†ä¸¤ä¸ªÏ†ä»£å…¥å±•å¼€å¯çŸ¥é“ç›¸ç­‰	\n"
-			<< "c.åªéœ€è¦è¯æ˜âˆ‘1/(5^(1/2))(x^i-y^i)æ˜¯æ–æ³¢é‚£å¥‘æ•°åˆ—çš„å…¬å¼å³å¯ï¼Œæˆ‘åœ¨solution3_2_7ç”¨å½’çº³æ³•ç®€çŸ­è¯æ˜è¿‡	\n"
-			<< "d.åŒä¸Šæˆ‘ä¹Ÿä»”ç»†è¯´æ˜è¿‡"
+		cout << "a.zf(z)+z^2f(z)=¡Æz^2+2z^3+3z^4+....£¬ÏÔÈ»f(z)=z+zf(z)+z^2f(z)	\n"
+			<< "b.¶ÔaÎÊ½âÒ»Ôª¶ş´Î·½³ÌµÃF(z)=z/(1-z-z^2),ºóÃæÁ½¸öµÈÊ½½«Á½¸ö¦Õ´úÈëÕ¹¿ª¿ÉÖªµÀÏàµÈ	\n"
+			<< "c.Ö»ĞèÒªÖ¤Ã÷¡Æ1/(5^(1/2))(x^i-y^i)ÊÇì³²¨ÄÇÆõÊıÁĞµÄ¹«Ê½¼´¿É£¬ÎÒÔÚsolution3_2_7ÓÃ¹éÄÉ·¨¼ò¶ÌÖ¤Ã÷¹ı	\n"
+			<< "d.Í¬ÉÏÎÒÒ²×ĞÏ¸ËµÃ÷¹ı"
 			<< endl;
 	}
 };
@@ -496,8 +496,8 @@ public:
 class solution4_5 {
 public: 
 	void operator()() {
-		cout << "a.å¯¹äºä»»æ„ä¸€å—èŠ¯ç‰‡ï¼Œæœ€å¤šæœ‰é™¤è‡ªå·±å¤–n-1ä»½æ£€æµ‹ç»“æœï¼Œå¦‚æœæœ‰ç­‰äºæˆ–è¶…è¿‡n/2ä¸ªæ˜¯å¥½çš„ï¼Œé‚£ä¹ˆç›¸åŒç»“æœè¶…è¿‡æˆ–ç­‰äºn/2 \n"
-			<< "å¯ä»¥çŸ¥é“è¿™å—èŠ¯ç‰‡çš„çœŸå®å¥½åå°±æ˜¯è¿™ä¸ªç»“æœï¼Œå¦‚æœæœ‰è¶…è¿‡n/2ä¸ªæ˜¯åçš„ï¼Œåˆ™æ— æ³•é€šè¿‡ç»Ÿè®¡ç¡®å®šå¥½å \n"
+		cout << "a.¶ÔÓÚÈÎÒâÒ»¿éĞ¾Æ¬£¬×î¶àÓĞ³ı×Ô¼ºÍân-1·İ¼ì²â½á¹û£¬Èç¹ûÓĞµÈÓÚ»ò³¬¹ın/2¸öÊÇºÃµÄ£¬ÄÇÃ´ÏàÍ¬½á¹û³¬¹ı»òµÈÓÚn/2 \n"
+			<< "¿ÉÒÔÖªµÀÕâ¿éĞ¾Æ¬µÄÕæÊµºÃ»µ¾ÍÊÇÕâ¸ö½á¹û£¬Èç¹ûÓĞ³¬¹ın/2¸öÊÇ»µµÄ£¬ÔòÎŞ·¨Í¨¹ıÍ³¼ÆÈ·¶¨ºÃ»µ \n"
 			<< endl;
 	}/////////////////////////////////////////////
 
@@ -506,25 +506,25 @@ public:
 class solution4_6 {
 public:
 	void operator()() {
-		cout << "a.i<k,k=i+n,å‡è®¾A[i,j]+A[k,j+1]<=A[i,j+1]+A[k,j]æˆç«‹	\n"
-			<< "æ ¹æ®å·²çŸ¥ä¸ç­‰å¼æœ‰A[k,j]+A[k+1,j+1]<=A[k,j+1]+A[k+1,j] \n"
-			<< "ä¸¤ä¸ªä¸ç­‰ç›¸åŠ åŒ–ç®€å¾—A[i,j]+A[k+1,j+1]<=A[i,j+1]+A[k+1,j]  \n"
-			<< "å› ä¸ºåŸºæœ¬æƒ…å†µå½“k=i+1æ—¶æˆç«‹ï¼Œæ‰€ä»¥å¯¹äº1<=i<k<=næ—¶ä¸ç­‰å¼æˆç«‹ï¼Œåˆ—åŒç†å¯è¯  \n"
-			<< "b.æŠŠç¬¬äºŒè¡Œçš„7æ”¹ä¸º5		\n"
-			<< "c.å‡è®¾å­˜åœ¨1<=i<k<=m,f(i)>f(k),æ ¹æ®Mongeé˜µåˆ—çš„æ€§è´¨ï¼ŒA[i,f(k)]+A[k,f(i)]<=A[i,f(i)]+A[k,f(k)]  \n"
-			<< "A[i,f(i)]<A[i,f(k)],A[k,f(k)]<A[i,f(k),æ•…A[i,f(k)]+A[k,f(i)]>A[i,f(i)]+A[k,f(k)],æ•…å‡è®¾ä¸æˆç«‹   \n"
-			<< "d.1<=f(2)<=f(4)<=f(6)<=...<=f(m-2)<=f(m)<=n,å‡è®¾mä¸ºå¶æ•°ï¼Œå¥‡æ•°åŒç†ï¼Œå¯»æ‰¾å¥‡æ•°è¡Œæœ€å·¦æœ€å°å…ƒç´ æ—¶  \n"
-			<< "åªéœ€æ¯”è¾ƒç›¸é‚»å¶æ•°è¡Œä¹‹é—´çš„æ•°ï¼Œf(1)â†’1...f(2),f(3)â†’f(4)...f(2),...,f(m-1)â†’n..f(m)  \n"
+		cout << "a.i<k,k=i+n,¼ÙÉèA[i,j]+A[k,j+1]<=A[i,j+1]+A[k,j]³ÉÁ¢	\n"
+			<< "¸ù¾İÒÑÖª²»µÈÊ½ÓĞA[k,j]+A[k+1,j+1]<=A[k,j+1]+A[k+1,j] \n"
+			<< "Á½¸ö²»µÈÏà¼Ó»¯¼òµÃA[i,j]+A[k+1,j+1]<=A[i,j+1]+A[k+1,j]  \n"
+			<< "ÒòÎª»ù±¾Çé¿öµ±k=i+1Ê±³ÉÁ¢£¬ËùÒÔ¶ÔÓÚ1<=i<k<=nÊ±²»µÈÊ½³ÉÁ¢£¬ÁĞÍ¬Àí¿ÉÖ¤  \n"
+			<< "b.°ÑµÚ¶şĞĞµÄ7¸ÄÎª5		\n"
+			<< "c.¼ÙÉè´æÔÚ1<=i<k<=m,f(i)>f(k),¸ù¾İMongeÕóÁĞµÄĞÔÖÊ£¬A[i,f(k)]+A[k,f(i)]<=A[i,f(i)]+A[k,f(k)]  \n"
+			<< "A[i,f(i)]<A[i,f(k)],A[k,f(k)]<A[i,f(k),¹ÊA[i,f(k)]+A[k,f(i)]>A[i,f(i)]+A[k,f(k)],¹Ê¼ÙÉè²»³ÉÁ¢   \n"
+			<< "d.1<=f(2)<=f(4)<=f(6)<=...<=f(m-2)<=f(m)<=n,¼ÙÉèmÎªÅ¼Êı£¬ÆæÊıÍ¬Àí£¬Ñ°ÕÒÆæÊıĞĞ×î×ó×îĞ¡ÔªËØÊ±  \n"
+			<< "Ö»Ğè±È½ÏÏàÁÚÅ¼ÊıĞĞÖ®¼äµÄÊı£¬f(1)¡ú1...f(2),f(3)¡úf(4)...f(2),...,f(m-1)¡ún..f(m)  \n"
 			<< "T'(n)=f(2)-f(1)+1+f(4)-f(2)+1+f(6)-f(4)+1+...+f(m)-f(m-2)+1,+n-f(m)+1=n+m/2=O(n+m)	\n"
-			<< "e.T(m)=T(m/2)+c(m+n),è§£é‡Šä¸ºæ±‚mè¡Œæœ€å°æœ€å·¦å…ƒç´ ç­‰äºæ±‚ä¸€åŠçš„å¶æ•°æœ€å°æœ€å·¦å…ƒç´ å†ä»¥O(m+n)æ±‚å¥‡æ•°æœ€å°å…ƒç´  \n"
-			<< "T(m)=âˆ‘c(m/(2^i)+n),i=0...lgm,T(m)=cnlgm+cmâˆ‘(1/(2^i)=cnlgm+cm-c=O(m+nlgn)"
+			<< "e.T(m)=T(m/2)+c(m+n),½âÊÍÎªÇómĞĞ×îĞ¡×î×óÔªËØµÈÓÚÇóÒ»°ëµÄÅ¼Êı×îĞ¡×î×óÔªËØÔÙÒÔO(m+n)ÇóÆæÊı×îĞ¡ÔªËØ \n"
+			<< "T(m)=¡Æc(m/(2^i)+n),i=0...lgm,T(m)=cnlgm+cm¡Æ(1/(2^i)=cnlgm+cm-c=O(m+nlgn)"
 			<< endl;
 		print_min_index(vect);
 		check(vect);
 	}
 private:
-	void print_min_index(vector<vector<int>>&vect) {//æ‰“å°æ¯è¡Œæœ€å·¦æœ€å°å…ƒç´ ï¼Œåªé€‚ç”¨äºè¾ƒå¤§è§„æ¨¡ï¼Œå¦‚æ³¨é‡Šæ‰çš„é˜µåˆ—å°±ä¸è¡Œ
-		vector<size_t>index_vect(vect.size(),0);//æ²¡æœ‰æ³¨é‡Šæ˜¯å› ä¸ºè¿™ä¸ªç¨‹åºå¹¶ä¸å®Œç¾ï¼Œæµ‹è¯•ç”¨ä¾‹å°‘ï¼Œå¯èƒ½æœ‰bug
+	void print_min_index(vector<vector<int>>&vect) {//´òÓ¡Ã¿ĞĞ×î×ó×îĞ¡ÔªËØ£¬Ö»ÊÊÓÃÓÚ½Ï´ó¹æÄ££¬Èç×¢ÊÍµôµÄÕóÁĞ¾Í²»ĞĞ
+		vector<size_t>index_vect(vect.size(),0);//Ã»ÓĞ×¢ÊÍÊÇÒòÎªÕâ¸ö³ÌĞò²¢²»ÍêÃÀ£¬²âÊÔÓÃÀıÉÙ£¬¿ÉÄÜÓĞbug
 		vector<size_t>rows_vect;
 		for (size_t i = 0; i != vect.size(); ++i)
 			rows_vect.push_back(i);
@@ -572,7 +572,7 @@ private:
 				}			
 		}
 	}
-	void  check(vector < vector<int>>&vect) {//æ‰“å°ä¸ç¬¦åˆæ€§è´¨çš„å·¦ä¸Šè§’åæ ‡
+	void  check(vector < vector<int>>&vect) {//´òÓ¡²»·ûºÏĞÔÖÊµÄ×óÉÏ½Ç×ø±ê
 		for (size_t i = 0; i < vect.size()-1; ++i) {
 			for (size_t j = 0; j < vect[0].size()-1; ++ j) {
 				int sum1 = vect[i][j] + vect[i + 1][j + 1];
